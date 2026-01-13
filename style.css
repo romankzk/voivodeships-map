@@ -18,3 +18,13 @@ body {
 #info h2 {
     margin: 0 0 5px;
 }
+
+#info .division-name {
+    font-size: 16px;
+    margin: 6px 0 10px;
+}
+
+#info .sup-division-name {
+    font-size: 12px;
+    color:rgb(56, 56, 56);
+}

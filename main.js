@@ -18,9 +18,9 @@ infoCtrl.onAdd = function (map) {
 };
 
 infoCtrl.update = function (props) {
-    this._div.innerHTML = '<h2>Адмінподіл Речі Посполитої у 1620 році</h2>' +  (props ?
-        `${props.name} (${props.relation})`
-        : 'Наведіть курсор на регіон');
+    this._div.innerHTML = '<h2>Річ Посполита у 1620 році</h2>' +  (props ?
+        `<span class="division-name">${props.name}<span><br><span class="sup-division-name">${props.relation}</span>`
+        : '<span class="division-name">Тут буде інформація про регіон</span>');
 };
 
 function setFeatureColor(relation) {
@@ -44,6 +44,8 @@ const regionsLayer = L.geoJson(data, {
         };
     },
     onEachFeature: onEachFeature
+}).bindPopup(function (layer) {
+    return layer.feature.properties.name;
 });
 
 const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
