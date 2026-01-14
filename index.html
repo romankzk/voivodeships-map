@@ -6,14 +6,36 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div id="map"></div>
-        <div id="info"></div>
+        <div id="title-control" class="basic-control">
+            <h1>Річ Посполита у 1620 році</h1>
+            <p>Інтерактивна карта адміністративного поділу Речі Посполитої у 1620 році</p>
+        </div>
+
+        <div id="info-control" class="basic-control">
+            <h2>Львівська земля</h2>
+            <p class="subheading">Руське воєводство</p>
+            <div class="grid-wrapper">
+                <dt>Назва пол.:</dt>
+                <dd>Ziemia lwowska</dd>
+                <dt>Назва лат.:</dt>
+                <dd>Terra Leopoliensis</dd>
+                <dt>Центр:</dt>
+                <dd>Львів</dd>
+                <dt>Роки існування:</dt>
+                <dd>1434-1772</dd>
+
+            </div>
+            <p class="description">Поділялася на два повіти: Львівський та Жидачівський.</p>
+        </div>
 
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/bundle.min.js"></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
         <script src="data.js"></script>
         <script src="main.js"></script>
     </body>
