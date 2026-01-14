@@ -40,22 +40,34 @@ infoCtrl.update = function(props) {
                 <dd>${props.years}</dd>
 
             </div>
-            <p class="description">Поділялася на два повіти: Львівський та Жидачівський.</p>
         `
-        : '<span>Натисніть на карту, щоб переглянути детальну інформацію</span>';
+        : '<span>Наведіть курсор на карту, щоб переглянути детальну інформацію</span>';
 };
 
 function setFeatureColor(higherDivision) {
-    return  higherDivision == 'Київське воєводство' ? colors.KIJOWSKIE :
-            higherDivision == 'Брацлавське воєводство' ? colors.BRACLAWSKIE :
-            higherDivision == 'Руське воєводство' ? colors.RUSKIE :
-            higherDivision == 'Подільське воєводство' ? colors.PODOLSKIE :
-            higherDivision == 'Волинське воєводство' ? colors.WOLYNSKIE :
-            colors.DEFAULT;
+    switch (higherDivision) {
+        case 'Київське воєводство':
+            return colors.KIJOWSKIE;
+            break;
+        case 'Брацлавське воєводство':
+            return colors.BRACLAWSKIE;
+            break;
+        case 'Руське воєводство':
+            return colors.RUSKIE;
+            break;
+        case 'Подільське воєводство':
+            return colors.PODOLSKIE;
+            break
+        case 'Волинське воєводство':
+            return colors.WOLYNSKIE;
+            break;
+        default:
+            return colors.DEFAULT;
+    }
 }
 
 // Create layers
-const regionsLayer = L.geoJson(data, {
+const regionsLayer = L.geoJson(areasData, {
     style: function (feature) {
         return {
             fillColor: setFeatureColor(feature.properties.higherDivision),
@@ -65,22 +77,28 @@ const regionsLayer = L.geoJson(data, {
             fillOpacity: 0.2
         };
     },
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: new L.DivIcon({
-                html: `<strong>${feature.properties.name}</strong>`
-            })
-        })
-    },
     onEachFeature: onEachFeature
 });
+
+/*const citiesLayer = L.geoJson(pointsData, {
+    pointToLayer(feature, latlng) {
+			return L.circleMarker(latlng, {
+				radius: 8,
+				fillColor: '#ff7800',
+				color: '#000',
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.8
+			});
+		}
+})*/
 
 const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 
-// Init map
+// Initialize map
 let map = L.map('map', {
     center: [48.88, 30.81],
     zoom: 6,
@@ -93,14 +111,13 @@ map.addControl(zoomCtrl)
     .addControl(infoCtrl)
     .addControl(searchCtrl);
 
-// Event listeners
+// Feature event listeners
 function highlightListener(e) {
     let layer = e.target;
 
     layer.setStyle({
         weight: 5,
         color: '#000',
-        //fillColor: '#2563EB',
         fillOpacity: 0.5
     });
 
