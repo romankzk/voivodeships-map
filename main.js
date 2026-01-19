@@ -1,6 +1,7 @@
 const colors = {
     BRACLAWSKIE: "#770c94",
     RUSKIE: "#2563EB",
+    BELZKIE: "#6d940c",
     KIJOWSKIE: "#2c781d",
     PODOLSKIE: "#ca7900",
     WOLYNSKIE: "#eb2581",
@@ -55,6 +56,9 @@ function setFeatureColor(higherDivision) {
         case 'Руське воєводство':
             return colors.RUSKIE;
             break;
+        case 'Белзьке воєводство':
+            return colors.BELZKIE;
+            break;
         case 'Подільське воєводство':
             return colors.PODOLSKIE;
             break
@@ -80,18 +84,33 @@ const regionsLayer = L.geoJson(areasData, {
     onEachFeature: onEachFeature
 });
 
-/*const citiesLayer = L.geoJson(pointsData, {
+const citiesLayer = L.geoJson(pointsData, {
     pointToLayer(feature, latlng) {
+            let markerRadius = 0;
+            let labelClass = "";
+
+            if (feature.properties.type == "wojewodztwo") {
+                markerRadius = 8;
+                labelClass = "wojewodztwo-city-label";
+            }
+            else { 
+                markerRadius = 4;
+                labelClass = "powiat-city-label";
+            }
+            
 			return L.circleMarker(latlng, {
-				radius: 8,
-				fillColor: '#ff7800',
+				radius: markerRadius,
+				fillColor: '#ff4f4f',
 				color: '#000',
 				weight: 1,
 				opacity: 1,
-				fillOpacity: 0.8
-			});
+				fillOpacity: 1
+			}).bindTooltip(feature.properties.name, {
+                permanent: true,
+                className: labelClass
+            });
 		}
-})*/
+})
 
 const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -102,7 +121,7 @@ const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let map = L.map('map', {
     center: [48.88, 30.81],
     zoom: 6,
-    layers: [osmLayer, regionsLayer],
+    layers: [osmLayer, regionsLayer, citiesLayer],
     zoomControl: false
 });
 

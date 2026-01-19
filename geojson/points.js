@@ -1,10 +1,43 @@
-const pointsData = {
-    "type": "FeatureCollection",
-    "name": "points",
-    "features": [
-        {
-            "type": "Feature", 
-            "properties": { "name": "Львів" }, 
-            "geometry": { "type": "Point", "coordinates": [49.84, 24.03] } 
-        }
-    ]}
+var pointsData = {
+"type": "FeatureCollection",
+"name": "cities",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Львів", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.030674115014577, 49.842048072333533 ] } },
+{ "type": "Feature", "properties": { "name": "Галич", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.729271447842571, 49.124569145327392 ] } },
+{ "type": "Feature", "properties": { "name": "Жидачів", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.142073279184569, 49.383123135448201 ] } },
+{ "type": "Feature", "properties": { "name": "Перемишль", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 22.777500734009589, 49.785663691092303 ] } },
+{ "type": "Feature", "properties": { "name": "Сянок", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 22.205000443810071, 49.560864098445656 ] } },
+{ "type": "Feature", "properties": { "name": "Белз", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.009613130638094, 50.382342663372135 ] } },
+{ "type": "Feature", "properties": { "name": "Кам'янець", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 26.585326709275218, 48.679431056851655 ] } },
+{ "type": "Feature", "properties": { "name": "Летичів", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 27.626008201103126, 49.38242301189262 ] } },
+{ "type": "Feature", "properties": { "name": "Теребовля", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.695567335276976, 49.296933081430318 ] } },
+{ "type": "Feature", "properties": { "name": "Коломия", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.036672198528883, 48.524155707292721 ] } },
+{ "type": "Feature", "properties": { "name": "Любачів", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.123080120203912, 50.157104214865448 ] } },
+{ "type": "Feature", "properties": { "name": "Дрогобич", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.505941929805086, 49.350673600415277 ] } },
+{ "type": "Feature", "properties": { "name": "Стрий", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.8486534372758, 49.258110000225777 ] } },
+{ "type": "Feature", "properties": { "name": "Самбір", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.20409769414573, 49.517594813509788 ] } },
+{ "type": "Feature", "properties": { "name": "Буськ", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.610075238392746, 49.965170757848114 ] } },
+{ "type": "Feature", "properties": { "name": "Вінниця", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.469523030683245, 49.233303369503084 ] } },
+{ "type": "Feature", "properties": { "name": "Брацлав", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.936987262630748, 48.827385661861683 ] } },
+{ "type": "Feature", "properties": { "name": "Холм", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.47582920320723, 51.137230993587728 ] } },
+{ "type": "Feature", "properties": { "name": "Краснистав", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.172909513026525, 50.983345442099605 ] } },
+{ "type": "Feature", "properties": { "name": "Ратне", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.528878422030683, 51.671252948102953 ] } },
+{ "type": "Feature", "properties": { "name": "Володимир", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.322391153931179, 50.846606502564143 ] } },
+{ "type": "Feature", "properties": { "name": "Луцьк", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.316111131660072, 50.746907548124589 ] } },
+{ "type": "Feature", "properties": { "name": "Кременець", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.726217789135493, 50.096431360489987 ] } },
+{ "type": "Feature", "properties": { "name": "Київ", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.52310343920416, 50.445848658294338 ] } },
+{ "type": "Feature", "properties": { "name": "Житомир", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.671887723117578, 50.260117435850667 ] } },
+{ "type": "Feature", "properties": { "name": "Овруч", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.807394992807875, 51.324220920369115 ] } },
+{ "type": "Feature", "properties": { "name": "Любеч", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.655025860489957, 51.702589576061605 ] } },
+{ "type": "Feature", "properties": { "name": "Чорнобиль", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.221259203544793, 51.2704241875036 ] } },
+{ "type": "Feature", "properties": { "name": "Черкаси", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 32.065305222822367, 49.440033121641513 ] } },
+{ "type": "Feature", "properties": { "name": "Остер", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.880512825133319, 50.949254832011277 ] } },
+{ "type": "Feature", "properties": { "name": "Звенигородка", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.95866252035152, 49.075513828691321 ] } },
+{ "type": "Feature", "properties": { "name": "Берестя", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.686439046971884, 52.091037661892038 ] } },
+{ "type": "Feature", "properties": { "name": "Пінськ", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 26.101192932246711, 52.115479399769811 ] } },
+{ "type": "Feature", "properties": { "name": "Городло", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.044655023792103, 50.894567363393904 ] } },
+{ "type": "Feature", "properties": { "name": "Грабовець", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.549408216709683, 50.82167339375372 ] } },
+{ "type": "Feature", "properties": { "name": "Червоногород", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.595073952112532, 48.803671147433434 ] } }
+]
+}

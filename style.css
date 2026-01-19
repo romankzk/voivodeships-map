@@ -60,3 +60,18 @@ body {
 .leaflet-bar {
     font-family: Inter;
 }
+
+.wojewodztwo-city-label {
+    font-family: Inter;
+    font-weight: 800;
+    font-size: 14px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 2px 4px;
+}
+
+.powiat-city-label {
+    font-family: Inter;
+    font-weight: 400;
+    background-color: rgba(255,255,255,0.8);
+    padding: 2px 4px;
+}
