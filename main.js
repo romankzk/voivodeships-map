@@ -28,17 +28,17 @@ infoCtrl.onAdd = function(map) {
 
 infoCtrl.update = function(props) {
     this._div.innerHTML = props ? 
-        `<h2>${props.name}</h2>
-            <p class="subheading">${props.higherDivision}</p>
+        `<h2>${props.name ?? "-"}</h2>
+            <p class="subheading">${props.higherDivision ?? "-"}</p>
             <div class="grid-wrapper">
                 <dt>Назва польською:</dt>
-                <dd>${props.namePolish}</dd>
+                <dd>${props.namePolish ?? "-"}</dd>
                 <dt>Назва латиною:</dt>
-                <dd>${props.nameLatin}</dd>
+                <dd>${props.nameLatin ?? "-"}</dd>
                 <dt>Центр:</dt>
-                <dd>${props.center}</dd>
+                <dd>${props.center ?? "-"}</dd>
                 <dt>Роки існування:</dt>
-                <dd>${props.years}</dd>
+                <dd>${props.years ?? "-"}</dd>
 
             </div>
         `
