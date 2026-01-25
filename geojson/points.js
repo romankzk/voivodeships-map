@@ -1,4 +1,4 @@
-var pointsData = {
+const pointsData = {
 "type": "FeatureCollection",
 "name": "cities",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -29,7 +29,6 @@ var pointsData = {
 { "type": "Feature", "properties": { "name": "Київ", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.52310343920416, 50.445848658294338 ] } },
 { "type": "Feature", "properties": { "name": "Житомир", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.671887723117578, 50.260117435850667 ] } },
 { "type": "Feature", "properties": { "name": "Овруч", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.807394992807875, 51.324220920369115 ] } },
-{ "type": "Feature", "properties": { "name": "Любеч", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.655025860489957, 51.702589576061605 ] } },
 { "type": "Feature", "properties": { "name": "Чорнобиль", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.221259203544793, 51.2704241875036 ] } },
 { "type": "Feature", "properties": { "name": "Черкаси", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 32.065305222822367, 49.440033121641513 ] } },
 { "type": "Feature", "properties": { "name": "Остер", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.880512825133319, 50.949254832011277 ] } },

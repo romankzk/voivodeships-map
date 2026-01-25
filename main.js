@@ -8,6 +8,10 @@ const colors = {
     DEFAULT: "gray"
 };
 
+window.onload = function() {
+    document.querySelector('#sources').style.display = 'none';
+}
+
 // Initialize controls
 let zoomCtrl = L.control.zoom({ position: 'bottomright'});
 let titleCtrl = L.control({ position: 'topleft' });
@@ -39,7 +43,8 @@ infoCtrl.update = function(props) {
                 <dd>${props.center ?? "-"}</dd>
                 <dt>Роки існування:</dt>
                 <dd>${props.years ?? "-"}</dd>
-
+                <dt>Додаткова інформація:</dt>
+                <dd>${props.description ?? "-"}</dd>
             </div>
         `
         : '<span>Наведіть курсор на карту, щоб переглянути детальну інформацію</span>';
@@ -160,4 +165,19 @@ function onEachFeature(feature, layer) {
         mouseout: resetListener,
         click: zoomToFeatureListener
     });
+}
+
+function sourcesToggle() {
+    let sourcesList = document.querySelector('#sources');
+    let toggleLink = document.querySelector('#toggle-link');
+    console.log(sourcesList.style.display);
+
+    if (sourcesList.style.display == 'none') {
+        toggleLink.innerHTML = 'приховати';
+        sourcesList.style.display = 'block';
+        
+    } else {
+        toggleLink.innerHTML = 'показати';
+        sourcesList.style.display = 'none';
+    }
 }
