@@ -29,14 +29,12 @@ const pointsData = {
 { "type": "Feature", "properties": { "name": "Київ", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.52310343920416, 50.445848658294338 ] } },
 { "type": "Feature", "properties": { "name": "Житомир", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.671887723117578, 50.260117435850667 ] } },
 { "type": "Feature", "properties": { "name": "Овруч", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 28.807394992807875, 51.324220920369115 ] } },
-{ "type": "Feature", "properties": { "name": "Чорнобиль", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.221259203544793, 51.2704241875036 ] } },
-{ "type": "Feature", "properties": { "name": "Черкаси", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 32.065305222822367, 49.440033121641513 ] } },
-{ "type": "Feature", "properties": { "name": "Остер", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.880512825133319, 50.949254832011277 ] } },
 { "type": "Feature", "properties": { "name": "Звенигородка", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 30.95866252035152, 49.075513828691321 ] } },
 { "type": "Feature", "properties": { "name": "Берестя", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.686439046971884, 52.091037661892038 ] } },
 { "type": "Feature", "properties": { "name": "Пінськ", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 26.101192932246711, 52.115479399769811 ] } },
 { "type": "Feature", "properties": { "name": "Городло", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 24.044655023792103, 50.894567363393904 ] } },
 { "type": "Feature", "properties": { "name": "Грабовець", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 23.549408216709683, 50.82167339375372 ] } },
-{ "type": "Feature", "properties": { "name": "Червоногород", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.595073952112532, 48.803671147433434 ] } }
+{ "type": "Feature", "properties": { "name": "Червоногород", "type": "powiat", "description": null }, "geometry": { "type": "Point", "coordinates": [ 25.595073952112532, 48.803671147433434 ] } },
+{ "type": "Feature", "properties": { "name": "Чернігів", "type": "wojewodztwo", "description": null }, "geometry": { "type": "Point", "coordinates": [ 31.279405891378254, 51.49340104503478 ] } }
 ]
 }
