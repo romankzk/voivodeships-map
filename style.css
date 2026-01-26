@@ -10,11 +10,13 @@ body {
 .basic-control {
     font-family: 'Inter', sans-serif;
     padding: 14px;
-    font: 1rem;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
+    max-width: 80vw;
+    text-wrap: wrap;
 }
+
 #title-control h1 {
     margin: 0;
 }
@@ -30,7 +32,6 @@ body {
     column-gap: 8px;
     margin-top: 10px;
     align-content: start;
-    text-wrap: wrap;
 }
 
 #info-control h2 {

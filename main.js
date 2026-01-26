@@ -146,18 +146,36 @@ const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 
+const esriImageryLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+const esriGeoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+	maxZoom: 16
+});
+
+let layerCtrl = L.control.layers({
+    "Esri Imagery": esriImageryLayer,
+    "Esri GeoWorldMap": esriGeoMap,
+    "OpenStreetMap": osmLayer,
+}, {
+    "Міста": citiesLayer
+});
+
 // Initialize map
 let map = L.map('map', {
     center: [48.88, 30.81],
     zoom: 6,
-    layers: [osmLayer, regionsLayer, bordersLayer, citiesLayer],
+    layers: [esriImageryLayer, esriGeoMap, osmLayer, regionsLayer, bordersLayer, citiesLayer],
     zoomControl: false
 });
 
 map.addControl(zoomCtrl)
     .addControl(titleCtrl)
     .addControl(infoCtrl)
-    .addControl(searchCtrl);
+    .addControl(searchCtrl)
+    .addControl(layerCtrl);
 
 // Feature event listeners
 function highlightListener(e) {
