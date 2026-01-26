@@ -3,8 +3,11 @@ const colors = {
     RUSKIE: "#2563EB",
     BELZKIE: "#6d940c",
     KIJOWSKIE: "#2c781d",
+    KIJOWSKIE_1667: "#4cc533",
     PODOLSKIE: "#ca7900",
     WOLYNSKIE: "#eb2581",
+    BRZESKOLITEWSKIE: "#eba925",
+    CZERNIHOWSKIE: "#5a25eb",
     DEFAULT: "gray"
 };
 
@@ -55,6 +58,9 @@ function setFeatureColor(higherDivision) {
         case 'Київське воєводство':
             return colors.KIJOWSKIE;
             break;
+        case 'Київське воєводство (до 1667)':
+            return colors.KIJOWSKIE_1667
+            break;
         case 'Брацлавське воєводство':
             return colors.BRACLAWSKIE;
             break;
@@ -70,6 +76,12 @@ function setFeatureColor(higherDivision) {
         case 'Волинське воєводство':
             return colors.WOLYNSKIE;
             break;
+        case 'Берестейське воєводство':
+            return colors.BRZESKOLITEWSKIE;
+            break;
+        case 'Чернігівське воєводство':
+            return colors.CZERNIHOWSKIE;
+            break;
         default:
             return colors.DEFAULT;
     }
@@ -80,13 +92,25 @@ const regionsLayer = L.geoJson(areasData, {
     style: function (feature) {
         return {
             fillColor: setFeatureColor(feature.properties.higherDivision),
-            weight: 2,
+            weight: 1.5,
             opacity: 0.7,
             color: '#000',
+            dashArray: '4, 4',
             fillOpacity: 0.2
         };
     },
     onEachFeature: onEachFeature
+});
+
+// Create layers
+const bordersLayer = L.geoJson(bordersData, {
+    style: function (feature) {
+        return {
+            weight: 3,
+            opacity: 0.7,
+            color: '#000',
+        };
+    }
 });
 
 const citiesLayer = L.geoJson(pointsData, {
@@ -126,7 +150,7 @@ const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let map = L.map('map', {
     center: [48.88, 30.81],
     zoom: 6,
-    layers: [osmLayer, regionsLayer, citiesLayer],
+    layers: [osmLayer, regionsLayer, bordersLayer, citiesLayer],
     zoomControl: false
 });
 

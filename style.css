@@ -25,11 +25,12 @@ body {
 
 #info-control .grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: fit-content(200px) 1fr;
     row-gap: 4px;
     column-gap: 8px;
     margin-top: 10px;
     align-content: start;
+    text-wrap: wrap;
 }
 
 #info-control h2 {
@@ -42,7 +43,7 @@ body {
     color:rgb(90, 90, 90)
 }
 
-#info-control .descriotion {
+#info-control .description {
     margin-top: 8px;
     margin-bottom: 4px;
 }
@@ -74,4 +75,9 @@ body {
     font-weight: 400;
     background-color: rgba(255,255,255,0.8);
     padding: 2px 4px;
+}
+
+#sources {
+    max-width: 500px;
+    text-wrap: wrap;
 }
