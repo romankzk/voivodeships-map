@@ -1,14 +1,3 @@
-// Set sources list on window load
-window.onload = function () {
-    const sourcesEl = this.document.querySelector('#sources');
-
-    sourcesEl.style.display = 'none';
-    sources.map(source => {
-        sourcesEl.innerHTML += `
-            <li><a target="_blank" href="${source.link}">${source.title}</a></li>`
-    });
-}
-
 // Create controls
 let zoomCtrl = L.control.zoom({ position: 'bottomright' });
 let titleCtrl = L.control({ position: 'topleft' });
@@ -82,24 +71,30 @@ const bordersLayer = L.geoJson(bordersData, {
     }
 });
 
-// Create layer for cities
-const citiesLayer = L.geoJson(pointsData, {
+// Create layer for primary cities
+const primaryCitiesLayer = L.geoJson(pointsData,  {
+    filter: function (feature) {
+        return feature.properties.type != "starostwo"
+    },
     pointToLayer(feature, latlng) {
         let markerRadius = 0;
         let labelClass = "";
+        let fillColor = "";
 
         if (feature.properties.type == "wojewodztwo") {
             markerRadius = 8;
-            labelClass = "wojewodztwo-city-label";
+            labelClass = "level1-city-label";
+            fillColor = "#ff4f4f";
         }
-        else {
+        else if (feature.properties.type == "powiat") {
             markerRadius = 4;
-            labelClass = "powiat-city-label";
+            labelClass = "level2-city-label";
+            fillColor = "#ff4f4f";
         }
 
         return L.circleMarker(latlng, {
             radius: markerRadius,
-            fillColor: '#ff4f4f',
+            fillColor: fillColor,
             color: '#000',
             weight: 1,
             opacity: 1,
@@ -109,7 +104,31 @@ const citiesLayer = L.geoJson(pointsData, {
             className: labelClass
         });
     }
-})
+});
+
+// Create layer for secondary cities
+const secondaryCitiesLayer = L.geoJson(pointsData,  {
+    filter: function (feature) {
+        return feature.properties.type == "starostwo"
+    },
+    pointToLayer(feature, latlng) {
+        let markerRadius = 3;
+        let labelClass = "level3-city-label";
+        let fillColor = "#fff64f";
+
+        return L.circleMarker(latlng, {
+            radius: markerRadius,
+            fillColor: fillColor,
+            color: '#000',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 1
+        }).bindTooltip(feature.properties.name, {
+            permanent: true,
+            className: labelClass
+        });
+    }
+});
 
 // Create basemap layers
 const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -117,29 +136,20 @@ const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 
-const esriImageryLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-});
-
-const esriGeoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
-    maxZoom: 16
-});
-
 // Add layers to control
 let layerCtrl = L.control.layers({
-    "Esri Imagery": esriImageryLayer,
-    "Esri GeoWorldMap": esriGeoMap,
     "OpenStreetMap": osmLayer,
+    
 }, {
-    "Міста": citiesLayer
+    "Центри воєводств і повітів": primaryCitiesLayer,
+    "Центри староств": secondaryCitiesLayer
 });
 
 // Initialize map
 let map = L.map('map', {
     center: [48.88, 30.81],
     zoom: 6,
-    layers: [esriImageryLayer, esriGeoMap, osmLayer, regionsLayer, bordersLayer, citiesLayer],
+    layers: [osmLayer, regionsLayer, bordersLayer, primaryCitiesLayer, secondaryCitiesLayer],
     zoomControl: false
 });
 
@@ -149,3 +159,40 @@ map.addControl(zoomCtrl)
     .addControl(infoCtrl)
     .addControl(searchCtrl)
     .addControl(layerCtrl);
+
+// Show/hide level 3 cities labels on zoom
+map.on("zoomend", function () {
+    let currentZoom = map.getZoom();
+
+    let zoomThreshold = 8;
+
+    let tooltips = document.querySelectorAll('.level3-city-label');
+
+    // Set the visibility based on the zoom level
+    if (currentZoom < zoomThreshold) {
+        tooltips.forEach(function (el) {
+            el.style.opacity = 0;
+        });
+    } else {
+        tooltips.forEach(function (el) {
+            el.style.opacity = 1;
+        });
+    }
+
+})
+
+// Set default settings on window load
+window.onload = function () {
+    const sourcesEl = this.document.querySelector('#sources');
+
+    sourcesEl.style.display = 'none';
+    sources.map(source => {
+        sourcesEl.innerHTML += `
+            <li><a target="_blank" href="${source.link}">${source.title}</a></li>`
+    });
+
+    const tooltips = document.querySelectorAll('.level3-city-label');
+    tooltips.forEach(function (el) {
+        el.style.opacity = 0;
+    });
+}

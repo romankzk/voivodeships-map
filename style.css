@@ -63,19 +63,30 @@ body {
     font-family: Inter;
 }
 
-.wojewodztwo-city-label {
+.level1-city-label {
     font-family: Inter;
     font-weight: 800;
     font-size: 14px;
     background-color: rgba(255,255,255,0.8);
     padding: 2px 4px;
+    text-decoration: underline;
 }
 
-.powiat-city-label {
+.level2-city-label {
     font-family: Inter;
     font-weight: 400;
     background-color: rgba(255,255,255,0.8);
     padding: 2px 4px;
+    text-decoration: underline;
+}
+
+.level3-city-label {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 10px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 2px 4px;
+    transition: opacity 0.1s ease-out;
 }
 
 #sources {
