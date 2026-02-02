@@ -9,7 +9,7 @@ An interactive map visualizing Ukrainian lands within the Polish-Lithuanian Comm
 
 ## Project Structure
 
-src/
+```src/
 ├── assets/             # Global styles and static assets
 ├── components/         # Class-based UI & Map logic
 │   ├── LayerFactory.js # Polygon and Point layer engines
@@ -20,6 +20,7 @@ src/
 │   └── styles.js       # Centralized Style Registry
 ├── App.js              # Application entry controller
 └── main.js             # Vite entry point
+```
 
 ## Development
 ### Prerequisites
