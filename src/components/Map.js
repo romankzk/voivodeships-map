@@ -1,5 +1,8 @@
 import L from 'leaflet';
 
+/**
+ * Class for map initialization
+ */
 export class Map {
     constructor(containerId) {
         this.instance = L.map(containerId, {

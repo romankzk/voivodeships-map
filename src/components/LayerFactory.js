@@ -1,6 +1,10 @@
 import L from 'leaflet';
 import { STYLES } from '../utils/constants';
 
+/**
+ * Base class for all layers
+ * @class
+ */
 class OverlayLayer {
     constructor(data, options = {}) {
         this.data = data;
@@ -51,6 +55,10 @@ class OverlayLayer {
     }
 }
 
+/**
+ * Class for regions layers
+ * @extends OverlayLayer
+ */
 export class RegionsLayer extends OverlayLayer {
     setStyle(feature) {
         return {
@@ -87,12 +95,20 @@ export class RegionsLayer extends OverlayLayer {
     }
 }
 
+/**
+ * Class for borders layers
+ * @extends OverlayLayer
+ */
 export class BordersLayer extends OverlayLayer {
     setStyle(feature) {
         return STYLES.BaseBorderStyle;
     }
 }
 
+/**
+ * Class for cities layers
+ * @extends OverlayLayer
+ */
 export class CitiesLayer extends OverlayLayer {
     setPointToLayer(feature, coords) {
         let markerStyle = STYLES.BaseMarkerStyle;

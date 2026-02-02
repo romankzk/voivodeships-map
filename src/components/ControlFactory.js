@@ -1,7 +1,14 @@
 import L from 'leaflet';
 import { SOURCES, TIME_PERIODS } from '../utils/constants';
 
+/**
+ * Base class for all controls
+ */
 class Control {
+    /**
+     * @constructor
+     * @param {object} - options for L.Control object
+     */
     constructor(options = { position: 'topleft' }) {
         this.options = options;
         this.instance = null;
@@ -9,6 +16,10 @@ class Control {
         this.containerClass = '';
     }
 
+    /**
+     * Method which adds control to the map
+     * @param {L.map} map - map instance
+     */
     addTo(map) {
         const ControlClass = L.Control.extend({
             onAdd: () => {
@@ -32,6 +43,10 @@ class Control {
     _setupListeners(container) { }
 }
 
+/**
+ * Class for control which shows details about region
+ * @extends Control
+ */
 export class InfoControl extends Control {
     constructor(options = { position: 'bottomleft' }) {
         super(options);
@@ -68,6 +83,10 @@ export class InfoControl extends Control {
     }
 }
 
+/**
+ * Class for the control which shows map title and description
+ * @extends Control
+ */
 export class TitleControl extends Control {
     constructor(options = { position: 'topleft' }) {
         super(options);
@@ -114,6 +133,10 @@ export class TitleControl extends Control {
     }
 }
 
+/**
+ * Class for controls which allows switching between different time periods
+ * @extends Control
+ */
 export class TimelineControl extends Control {
     constructor(options = { position: 'topright' }) {
         super(options);
