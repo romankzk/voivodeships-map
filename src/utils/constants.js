@@ -1,3 +1,18 @@
+export const TIME_PERIODS = {
+    PERIOD_1620: {
+        id: "1620",
+        label: "1620-1648",
+        areasFile: "areas-1620",
+        bordersFile: "borders-1620"
+    },
+    PERIOD_1750: {
+        id: "1750",
+        label: "1750-1770",
+        areasFile: "areas-1750",
+        bordersFile: "borders-1750"
+    }
+}
+
 export const SOURCES = [
     {
         title: "Адміністративно-територіальний устрій Правобережної України / М. Крикун, 1993",

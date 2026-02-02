@@ -20,7 +20,7 @@ class OverlayLayer {
 
         this.instance = L.geoJson(this.data, options);
         this.instance.addTo(mapInstance);
-        return this;
+        return this.instance;
     }
 
     _bindEvents(feature, layer) {

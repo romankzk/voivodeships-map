@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { SOURCES } from '../utils/constants';
+import { SOURCES, TIME_PERIODS } from '../utils/constants';
 
 class Control {
     constructor(options = { position: 'topleft' }) {
@@ -17,7 +17,7 @@ class Control {
 
                 L.DomEvent.disableClickPropagation(this.container);
 
-                L.DomEvent.on(this.container, 'click', (e) => this._handleClick(e));
+                this._setupListeners(this.container);
 
                 this.update();
                 return this.container;
@@ -29,7 +29,7 @@ class Control {
     }
 
     update(props) { }
-    _handleClick(e) {}
+    _setupListeners(container) { }
 }
 
 export class InfoControl extends Control {
@@ -97,19 +97,57 @@ export class TitleControl extends Control {
         return listItems;
     }
 
-    _handleClick(e) {
-        const target = e.target;
+    _setupListeners(container) {
+        container.addEventListener('click', (e) => {
+            const target = e.target;
 
-        if (target.closest('#toggle-link')) {
-            let sourcesEl = document.querySelector('#sources');
-            let toggleLink = document.querySelector('#toggle-link');
+            if (target.closest('#toggle-link')) {
+                let sourcesEl = document.querySelector('#sources');
 
-            sourcesEl.classList.toggle('hidden');
+                sourcesEl.classList.toggle('hidden');
 
-            this.sourcesHidden = this.sourcesHidden ? false : true;
+                this.sourcesHidden = this.sourcesHidden ? false : true;
+
+                this.update();
+            }
+        });
+    }
+}
+
+export class TimelineControl extends Control {
+    constructor(options = { position: 'topright' }) {
+        super(options);
+        this.onPeriodChange = options.onPeriodChange;
+        this.currentPeriod = options.initialPeriod || TIME_PERIODS.PERIOD_1620.id;
+        this.containerClass = 'timeline-control';
+    }
+
+    update() {
+        if (!this.container) return;
+
+        this.container.innerHTML = Object.values(TIME_PERIODS).map(period => `
+                    <button class="period-btn ${period.id === this.currentPeriod ? 'active' : ''}" 
+                            data-id="${period.id}">
+                        ${period.label}
+                    </button>
+                `).join('');
+    }
+
+    _setupListeners(container) {
+        container.addEventListener('click', (e) => {
+            const btn = e.target.closest('.period-btn');
+            if (!btn) return;
+
+            const periodId = btn.dataset.id;
             
-            this.update();
-        }
+            // Update UI
+            container.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
+            // Notify the app that we are changing periods
+            if (this.onPeriodChange) {
+                this.onPeriodChange(periodId);
+            }
+        });
     }
 }
