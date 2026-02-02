@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
     BRACLAWSKIE: "#770c94",
     RUSKIE: "#2563EB",
     BELZKIE: "#6d940c",
@@ -11,7 +11,7 @@ const colors = {
     DEFAULT: "gray"
 };
 
-const sources = [
+export const sources = [
     {
         title: "Адміністративно-територіальний устрій Правобережної України / М. Крикун, 1993",
         link: "https://chtyvo.org.ua/authors/Krykun_Mykola/Administratyvno-terytorialnyi_ustrii_Pravoberezhnoi_Ukrainy_v_XV-XVIII_st_Kordony_voievodstv_u_svitl/"

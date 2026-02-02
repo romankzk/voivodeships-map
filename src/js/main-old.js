@@ -1,8 +1,15 @@
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+import { sources } from './js/enums';
+import { highlightListener, resetListener, zoomToFeatureListener, sourcesToggle, setFeatureColor } from './js/listeners';
+import { RegionsLayer } from './Layer';
+
 // Create controls
 let zoomCtrl = L.control.zoom({ position: 'bottomright' });
 let titleCtrl = L.control({ position: 'topleft' });
 let infoCtrl = L.control({ position: 'bottomleft' });
-let searchCtrl = new L.Control.Geocoder();
+//let searchCtrl = new L.Control.Geocoder();
 
 // Initialize title control
 titleCtrl.onAdd = function (map) {
@@ -40,25 +47,25 @@ infoCtrl.update = function (props) {
 };
 
 // Create layer for regions
-const regionsLayer = L.geoJson(areasData, {
-    style: function (feature) {
-        return {
-            fillColor: setFeatureColor(feature.properties.higherDivision),
-            weight: 1.5,
-            opacity: 0.7,
-            color: '#000',
-            dashArray: '4, 4',
-            fillOpacity: 0.2
-        };
-    },
-    onEachFeature: function (feature, layer) {
-        layer.on({
-            mouseover: highlightListener,
-            mouseout: resetListener,
-            click: zoomToFeatureListener
-        });
-    }
-});
+// const regionsLayer = L.geoJson(areasData, {
+//     style: function (feature) {
+//         return {
+//             fillColor: setFeatureColor(feature.properties.higherDivision),
+//             weight: 1.5,
+//             opacity: 0.7,
+//             color: '#000',
+//             dashArray: '4, 4',
+//             fillOpacity: 0.2
+//         };
+//     },
+//     onEachFeature: function (feature, layer) {
+//         layer.on({
+//             mouseover: highlightListener,
+//             mouseout: resetListener,
+//             click: zoomToFeatureListener
+//         });
+//     }
+// });
 
 // Create layer for borders
 const bordersLayer = L.geoJson(bordersData, {
@@ -149,7 +156,7 @@ let layerCtrl = L.control.layers({
 let map = L.map('map', {
     center: [48.88, 30.81],
     zoom: 6,
-    layers: [osmLayer, regionsLayer, bordersLayer, primaryCitiesLayer, secondaryCitiesLayer],
+    layers: [osmLayer, regionsLayer.instance, bordersLayer, primaryCitiesLayer, secondaryCitiesLayer],
     zoomControl: false
 });
 

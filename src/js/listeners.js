@@ -1,5 +1,7 @@
+import { colors } from './enums';
+
 // Highlight region on hover
-function highlightListener(e) {
+export function highlightListener(e) {
     let layer = e.target;
 
     layer.setStyle({
@@ -13,21 +15,20 @@ function highlightListener(e) {
 }
 
 // Reset region highligh on mouse out
-function resetListener(e) {
+export function resetListener(e) {
     regionsLayer.resetStyle(e.target);
     infoCtrl.update();
 }
 
 // Zoom to region on click
-function zoomToFeatureListener(e) {
+export function zoomToFeatureListener(e) {
     map.fitBounds(e.target.getBounds());
 }
 
 // Sources show/hide link handler
-function sourcesToggle() {
+export function sourcesToggle() {
     let sourcesList = document.querySelector('#sources');
     let toggleLink = document.querySelector('#toggle-link');
-    console.log(sourcesList.style.display);
 
     if (sourcesList.style.display == 'none') {
         toggleLink.innerHTML = 'приховати';
@@ -39,7 +40,7 @@ function sourcesToggle() {
     }
 }
 
-function setFeatureColor(higherDivision) {
+export function setFeatureColor(higherDivision) {
     switch (higherDivision) {
         case 'Київське воєводство':
             return colors.KIJOWSKIE;
