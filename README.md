@@ -10,21 +10,6 @@ https://romankzk.github.io/voivodeships-map/
 - Language: Vanilla JavaScript
 - Data: GeoJSON
 
-## Project Structure
-
-```src/
-├── assets/             # Global styles and static assets
-├── components/         # Class-based UI & Map logic
-│   ├── LayerFactory.js # Polygon and Point layer engines
-│   ├── Map.js          # Leaflet instance wrapper
-│   └── InfoControl.js  # Interactive side panel
-├── utils/              # Pure functions, Enums, and Constants
-│   ├── constants.js    # Colors, Eras, and Source metadata
-│   └── styles.js       # Centralized Style Registry
-├── App.js              # Application entry controller
-└── main.js             # Vite entry point
-```
-
 ## Development
 ### Prerequisites
 - Node.js (v18 or higher)
