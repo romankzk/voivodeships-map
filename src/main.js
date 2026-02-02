@@ -1,6 +1,7 @@
 import { App } from './App'; 
 
-import "./style.css";
+import 'leaflet/dist/leaflet.css';
+import "./assets/style.css";
 
 // Initializing the app
 document.addEventListener('DOMContentLoaded', () => {
