@@ -23,9 +23,9 @@ export class Map {
     }
 
     #initPanes() {
-        this.instance.createPane('bordersPane');
-        this.instance.getPane('bordersPane').style.zIndex = 450;
-        this.instance.getPane('bordersPane').style.pointerEvents = 'none';
+        this.instance.createPane('regionsPane');
+        this.instance.getPane('regionsPane').style.zIndex = 450;
+        this.instance.getPane('regionsPane').style.pointerEvents = 'none';
 
         this.instance.createPane('citiesPane');
         this.instance.getPane('citiesPane').style.zIndex = 600;
@@ -34,16 +34,29 @@ export class Map {
     #setupGlobalListeners() {
         this.instance.on('zoomend', () => {
             const zoom = this.instance.getZoom();
-            const opacity = zoom < 8 ? 0 : 1;
+            const level2Zoom = 7;
+            const level3Zoom = 8;
+
+            const level2Opacity = zoom < level2Zoom ? 0 : 1;
+            const level3Opacity = zoom < level3Zoom ? 0 : 1;
+
+            // Targeted update for specific label classes
+            document.querySelectorAll('.level2-city-label').forEach(el => {
+                el.style.opacity = level2Opacity;
+            });
 
             // Targeted update for specific label classes
             document.querySelectorAll('.level3-city-label').forEach(el => {
-                el.style.opacity = opacity;
+                el.style.opacity = level3Opacity;
             });
         });
 
         // Add standard zoom control to a specific corner
         L.control.zoom({ position: 'bottomright' }).addTo(this.instance);
+    }
+
+    getPane(paneId) {
+        return this.instance.getPane(paneId);
     }
 
     getLeafletInstance() {

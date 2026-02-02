@@ -9,8 +9,9 @@ class OverlayLayer {
         this.instance = null;
     }
 
-    init(mapInstance) {
+    init(mapInstance, pane) {
         const options = {
+            pane: pane,
             style: (f) => this.setStyle(f),
             filter: (f) => this.setFilter(f),
             onEachFeature: (f, l) => this._bindEvents(f, l),
@@ -78,7 +79,6 @@ export class RegionsLayer extends OverlayLayer {
         const layer = e.target;
 
         layer.setStyle(STYLES.HoverFeatureStyle);
-
         layer.bringToFront();
     }
 
@@ -126,6 +126,11 @@ export class CitiesLayer extends OverlayLayer {
 
         // Hide secondary cities labels
         document.querySelectorAll('.level3-city-label').forEach(el => {
+            el.style.opacity = 0;
+        });
+
+        // Hide secondary cities labels
+        document.querySelectorAll('.level2-city-label').forEach(el => {
             el.style.opacity = 0;
         });
     }

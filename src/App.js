@@ -15,12 +15,12 @@ export class App {
         this.titleControl.addTo(this.map.instance);
         this.infoControl.addTo(this.map.instance);
 
-        // Fetch Areas data
+        // Fetch geojson data
         const areasData = await (await fetch('./data/areas.geojson')).json();
         const bordersData = await (await fetch('./data/borders.geojson')).json();
         const pointsData = await (await fetch('./data/points.geojson')).json();
 
-        // Initialize layer with callbacks
+        // Create layers
         const regionsLayer = new RegionsLayer(areasData, {
             onMouseOver: (props) => this.infoControl.update(props),
             onMouseOut: () => this.infoControl.update()
@@ -34,9 +34,10 @@ export class App {
         const secondaryCitiesLayer = new CitiesLayer(pointsData);
         secondaryCitiesLayer.setFilter = (f) => f.properties.type == "starostwo";
 
-        regionsLayer.init(this.map.instance);
-        bordersLayer.init(this.map.instance);
-        primaryCitiesLayer.init(this.map.instance);
-        secondaryCitiesLayer.init(this.map.instance);
+        // Initialize layers
+        regionsLayer.init(this.map.instance, this.map.getPane('regionsPane'));
+        bordersLayer.init(this.map.instance, this.map.getPane('regionsPane'));
+        primaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
+        secondaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
     }
 }

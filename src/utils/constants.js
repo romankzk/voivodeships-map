@@ -48,22 +48,23 @@ export const SOURCES = [
 export const STYLES = {
     BaseBorderStyle: {
         weight: 3,
-        opacity: 0.7,
+        opacity: 0.5,
         color: '#000',
     },
 
     BaseFeatureStyle: {
         weight: 1.5,
-        opacity: 0.7,
+        opacity: 0.5,
         color: '#000',
         dashArray: '4, 4',
-        fillOpacity: 0.2
+        fillOpacity: 0.1
     },
 
     HoverFeatureStyle: {
         weight: 5,
         color: '#000',
-        fillOpacity: 0.5
+        opacity: 0.8,
+        fillOpacity: 0.3
     },
 
     BaseMarkerStyle: {
