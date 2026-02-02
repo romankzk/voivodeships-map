@@ -1,4 +1,6 @@
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 import { Map } from './components/Map';
 import { RegionsLayer, BordersLayer, CitiesLayer } from './components/LayerFactory';
 import { InfoControl, TitleControl, TimelineControl } from './components/ControlFactory';

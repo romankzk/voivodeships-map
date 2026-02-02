@@ -1,6 +1,5 @@
 import { App } from './App'; 
 
-import 'leaflet/dist/leaflet.css';
 import "./assets/style.css";
 
 // Initializing the app
