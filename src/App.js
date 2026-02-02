@@ -2,9 +2,9 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { Map } from './components/Map';
-import { RegionsLayer, BordersLayer, CitiesLayer } from './components/LayerFactory';
-import { InfoControl, TitleControl, TimelineControl } from './components/ControlFactory';
-import { TIME_PERIODS } from './utils/constants';
+import { RegionsLayer, BordersLayer, CitiesLayer } from './components/LayerFactory.js';
+import { InfoControl, TitleControl, TimelineControl } from './components/ControlFactory.js';
+import { TIME_PERIODS } from './utils/constants.js';
 
 export class App {
     constructor() {

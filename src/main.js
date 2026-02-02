@@ -1,4 +1,4 @@
-import { App } from './App'; 
+import { App } from './App.js'; 
 
 import "./assets/style.css";
 

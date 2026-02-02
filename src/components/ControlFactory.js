@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { SOURCES, TIME_PERIODS } from '../utils/constants';
+import { SOURCES, TIME_PERIODS } from '../utils/constants.js';
 
 /**
  * Base class for all controls

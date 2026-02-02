@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { STYLES } from '../utils/constants';
+import { STYLES } from '../utils/constants.js';
 
 /**
  * Base class for all layers
