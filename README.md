@@ -19,7 +19,7 @@ https://romankzk.github.io/voivodeships-map/
 1. Clone the repository:
 
 ```Bash
-git clone https://github.com/your-username/voivodeships-map.git
+git clone https://github.com/romankzk/voivodeships-map.git
 ```
 2. Install dependencies:
 
