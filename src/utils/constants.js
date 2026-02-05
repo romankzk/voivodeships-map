@@ -55,6 +55,32 @@ export const SOURCES = [
     {
         title: "Любецьке староство (XVI - середина XVII ст.) / І. Кондратьєв, 2014",
         link: "https://shron1.chtyvo.org.ua/Kondratiev_Ihor/Liubetske_starostvo_XVI_-_seredyna_XVII_st.pdf"
+    },
+    {
+        title: "Arcanum Maps",
+        link: "https://maps.arcanum.com/en/"
+    }
+]
+
+/**
+ * Flags and coat of arms icons
+ */
+export const FLAG_ICONS = [
+    {
+        name: "Річ Посполита",
+        iconUrl: new URL('../assets/icons/poland.png', import.meta.url).href,
+    },
+    {
+        name: "Угорське королівство (Габсбурзька монархія)",
+        iconUrl: new URL('../assets/icons/habsburg.png', import.meta.url).href,
+    },
+    {
+        name: "Молдавське князівство",
+        iconUrl: new URL('../assets/icons/moldavia.png', import.meta.url).href,
+    },
+    {
+        name: "Трансильванське князівство",
+        iconUrl: new URL('../assets/icons/transylvania.png', import.meta.url).href,
     }
 ]
 

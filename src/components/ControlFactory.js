@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { SOURCES, TIME_PERIODS } from '../utils/constants.js';
+import { FLAG_ICONS, SOURCES, TIME_PERIODS } from '../utils/constants.js';
 
 /**
  * Base class for all controls
@@ -40,6 +40,7 @@ class Control {
     }
 
     update(props) { }
+    _renderHtml(props) {}
     _setupListeners(container) { }
 }
 
@@ -53,17 +54,25 @@ export class InfoControl extends Control {
         this.containerClass = 'info-control';
     }
 
-    update(props) {
-        if (!this.container) return;
-
+    _renderHtml(props) {
         if (!props) {
             this.container.innerHTML = '<span>Наведіть курсор на карту, щоб переглянути детальну інформацію</span>';
             return;
         }
 
+        const countryIcon = FLAG_ICONS.find(i => i.name == props.country) || '';
+
         this.container.innerHTML = `
-            <h2>${props.name || '-'}</h2>
-            <p class="subheading">${props.higherDivision || "-"}</p>
+            <h2>${props.name}</h2>
+            <h3>${props.country != props.higherDivision ? props.higherDivision : ''}</h3>
+            <h4>
+                <img src="${countryIcon.iconUrl}" 
+                        class="country-icon" 
+                        alt="${countryIcon.name}"
+                        loading="lazy"
+                    />
+                ${props.country || ''}
+            </h4>
             <div class="grid-wrapper">
                 ${props.namePolish ? this._renderRow("Назва польською", props.namePolish) : ''}
                 ${props.nameLatin ? this._renderRow("Назва латиною", props.nameLatin) : ''}
@@ -72,6 +81,12 @@ export class InfoControl extends Control {
                 ${props.description ? this._renderRow("Додатково", props.description) : ''}
             </div>
         `;
+    }
+
+    update(props) {
+        if (!this.container) return;
+
+        this._renderHtml(props); 
     }
 
     _renderRow(label, value) {
@@ -98,8 +113,8 @@ export class TitleControl extends Control {
         if (!this.container) return;
 
         this.container.innerHTML = `
-                <h1>Українські землі у складі Речі Посполитої</h1>
-                <p>Інтерактивна карта адміністративно-територіального поділу українських земель<br> у складі Речі Посполитої у XVII-XIII ст.</p>
+                <h1>Українські землі у XVII-XVIII ст.</h1>
+                <p>Інтерактивна карта адміністративно-територіального поділу українських земель<br> у складі Речі Посполитої, Угорського королівства та Молдовського князівства.</p>
                 <p>Карта несе лише ознайомчий характер і не претендує на історичну достовірність.</p>
                 <p>Джерела: <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a></p>
                 <ul id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this._renderSourcesList(SOURCES)}</ul>
@@ -162,7 +177,7 @@ export class TimelineControl extends Control {
             if (!btn) return;
 
             const periodId = btn.dataset.id;
-            
+
             // Update UI
             container.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');

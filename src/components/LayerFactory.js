@@ -77,8 +77,9 @@ export class RegionsLayer extends OverlayLayer {
             "Подільське воєводство": STYLES.FeatureFillColors.Olive,
             "Брацлавське воєводство": STYLES.FeatureFillColors.Pink,
             "Берестейське воєводство": STYLES.FeatureFillColors.Gold,
-            "Молдовське князівство": STYLES.FeatureFillColors.OrangeRed,
-            "Угорське королівство": STYLES.FeatureFillColors.Green,
+            "Молдавське князівство": STYLES.FeatureFillColors.OrangeRed,
+            "Угорське королівство (Габсбурзька монархія)": STYLES.FeatureFillColors.Green,
+            "Трансильванське князівство": STYLES.FeatureFillColors.Gold,
         };
 
         return mapping[division] || STYLES.FeatureFillColors.Default;
