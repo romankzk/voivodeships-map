@@ -27,9 +27,9 @@ class Control {
                 L.DomUtil.addClass(this.container, 'base-control');
 
                 L.DomEvent.disableClickPropagation(this.container);
-                
+
                 this.update();
-                
+
                 this._setupListeners(this.container);
 
                 return this.container;
@@ -41,7 +41,7 @@ class Control {
     }
 
     update(props) { }
-    _renderHtml(props) {}
+    _renderHtml(props) { }
     _setupListeners(container) { }
 }
 
@@ -58,7 +58,7 @@ export class InfoControl extends Control {
     update(props) {
         if (!this.container) return;
 
-        this._renderHtml(props); 
+        this._renderHtml(props);
     }
 
     _renderHtml(props) {
@@ -120,9 +120,23 @@ export class TitleControl extends Control {
         this.container.innerHTML = `
                 <h1>Українські землі у XVII-XVIII ст.</h1>
                 <p>Інтерактивна карта адміністративно-територіального поділу українських земель
-                    <br> у складі Речі Посполитої, Угорського королівства та Молдовського князівства.</p>
+                    <br> у складі різних державних утворень.</p>
                 <p>Карта несе лише ознайомчий характер і не претендує на історичну достовірність.</p>
-                <p>Джерела: 
+                <h2>Легенда</h2>
+                <div class="legend-item">
+                    <span class="legend-circle level-1-circle"></span>
+                    <span class="legend-text">Центри воєводств, комітатів, цинутів</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle level-2-circle"></span>
+                    <span class="legend-text">Центри повітів, полків</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle level-3-circle"></span>
+                    <span class="legend-text">Центри староств</span>
+                </div>
+                <h2>Джерела</h2>
+                <p> 
                     <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a>
                 </p>
                 <ul id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this.#renderSourcesList(SOURCES)}</ul>`
@@ -171,7 +185,7 @@ export class TimelineControl extends Control {
     }
 
     _renderHtml() {
-        this.container.innerHTML = Object.values(TIME_PERIODS).map(period => 
+        this.container.innerHTML = Object.values(TIME_PERIODS).map(period =>
             `<button 
                 class="period-btn ${period.id === this.currentPeriod ? 'active' : ''}" 
                 data-id="${period.id}">
@@ -211,7 +225,7 @@ export class TimelineControl extends Control {
  * @extends Control
  */
 export class SearchControl extends Control {
-    constructor(options = { onLocationSelect}) {
+    constructor(options = { onLocationSelect }) {
         super({ position: 'topright' });
         this.onLocationSelect = options.onLocationSelect;
         this.containerClass = 'search-control';
@@ -256,7 +270,7 @@ export class SearchControl extends Control {
 
             const feature = JSON.parse(item.dataset.feature);
             this.#handleSelection(feature);
-            
+
             // UI Reset
             resultsList.style.display = 'none';
             input.value = '';
