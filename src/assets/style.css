@@ -227,3 +227,15 @@ body {
     font-family: Inter, sans-serif;
     font-weight: bold;
 }
+
+.leaflet-top.leaflet-right {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.leaflet-top.leaflet-right .leaflet-control {
+    margin: 0; 
+}
