@@ -27,10 +27,11 @@ class Control {
                 L.DomUtil.addClass(this.container, 'base-control');
 
                 L.DomEvent.disableClickPropagation(this.container);
-
+                
+                this.update();
+                
                 this._setupListeners(this.container);
 
-                this.update();
                 return this.container;
             }
         });
@@ -202,5 +203,116 @@ export class TimelineControl extends Control {
                 this.onPeriodChange(periodId);
             }
         });
+    }
+}
+
+/**
+ * Class for control which allows searching the map
+ * @extends Control
+ */
+export class SearchControl extends Control {
+    constructor(options = { onLocationSelect}) {
+        super({ position: 'topright' });
+        this.onLocationSelect = options.onLocationSelect;
+        this.containerClass = 'search-control';
+    }
+
+    update() {
+        if (!this.container) return;
+
+        this.container.innerHTML = `
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Шукати на карті..." />
+                        <ul class="search-results" style="display: none;"></ul>
+                    </div>
+                `;
+    }
+
+    _setupListeners(container) {
+        const input = container.querySelector('.search-input');
+        const resultsList = container.querySelector('.search-results');
+
+        // Use a "Debounce" to prevent spamming the OSM API
+        let debounceTimer;
+
+        input.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            clearTimeout(debounceTimer);
+
+            if (query.length < 3) {
+                resultsList.style.display = 'none';
+                return;
+            }
+
+            debounceTimer = setTimeout(async () => {
+                const osmResults = await this.#searchOSM(query);
+                this.#renderResults(osmResults, resultsList);
+            }, 500); // Wait 500ms after typing stops
+        });
+
+        resultsList.addEventListener('click', (e) => {
+            const item = e.target.closest('li');
+            if (!item) return;
+
+            const feature = JSON.parse(item.dataset.feature);
+            this.#handleSelection(feature);
+            
+            // UI Reset
+            resultsList.style.display = 'none';
+            input.value = '';
+        });
+    }
+
+    /**
+     * Fetches results from OpenStreetMap Nominatim API
+     * @private
+     */
+    async #searchOSM(query) {
+        // We can restrict search to Ukraine or specific bounding boxes to keep it relevant
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&countrycodes=ua`;
+
+        try {
+            const response = await fetch(url, {
+                headers: { 'Accept-Language': 'uk, en' } // Prefer Ukrainian names
+            });
+            const data = await response.json();
+
+            // Map OSM format to internal "Feature" format for consistency
+            return data.map(item => ({
+                properties: {
+                    name: item.display_name.split(',')[0],
+                    higherDivision: item.display_name.split(',').slice(1, 3).join(','),
+                    isOSM: true // Flag to distinguish from your local data
+                },
+                geometry: {
+                    coordinates: [parseFloat(item.lon), parseFloat(item.lat)]
+                }
+            }));
+        } catch (error) {
+            console.error("OSM Search failed:", error);
+            return [];
+        }
+    }
+
+    #renderResults(matches, listElement) {
+        if (matches.length === 0) {
+            listElement.style.display = 'none';
+            return;
+        }
+
+        listElement.innerHTML = matches.map(f => `
+            <li class="search-item" data-feature='${JSON.stringify(f)}'>
+                <span class="item-name">${f.properties.name}</span>
+                <span class="item-meta">${f.properties.higherDivision || ''}</span>
+            </li>
+        `).join('');
+
+        listElement.style.display = 'block';
+    }
+
+    #handleSelection(feature) {
+        if (this.onLocationSelect) {
+            this.onLocationSelect(feature);
+        }
     }
 }
