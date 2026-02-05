@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { FLAG_ICONS, SOURCES, TIME_PERIODS } from '../utils/constants.js';
+import { FLAG_ICONS, SOURCES, TIME_PERIODS } from '@/utils/constants.js';
 
 /**
  * Base class for all controls

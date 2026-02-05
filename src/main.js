@@ -1,6 +1,6 @@
-import { App } from './App.js'; 
+import { App } from '@/App.js'; 
 
-import "./assets/style.css";
+import "@/assets/style.css";
 
 // Initializing the app
 document.addEventListener('DOMContentLoaded', () => {

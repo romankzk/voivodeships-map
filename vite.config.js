@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite';
+import path from 'path';
 
 export default defineConfig({
-  // This must match your GitHub repository name
-  base: '/voivodeships-map/', 
+  base: '/voivodeships-map/',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  }, 
   build: {
     outDir: 'dist',
   }

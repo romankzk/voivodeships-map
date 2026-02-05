@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { COUNTIES_NAME_MAP, KINGDOM_NAME_MAP, STYLES } from '../utils/constants.js';
+import { COUNTIES_NAME_MAP, KINGDOM_NAME_MAP, STYLES } from '@/utils/constants.js';
 
 /**
  * Base class for all layers
