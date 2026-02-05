@@ -67,21 +67,21 @@ export class InfoControl extends Control {
             return;
         }
 
-        const countryIcon = FLAG_ICONS.find(i => i.name == props.country) || '';
+        const countryInfo = FLAG_ICONS.find(i => i.name == props.country) || '';
 
         this.container.innerHTML = `
             <h2>${props.name}</h2>
             <h3>${props.higherDivision != props.name && props.higherDivision != props.country ? props.higherDivision : ''}</h3>
             <h4>
-                <img src="${countryIcon.iconUrl}" 
+                <img src="${countryInfo.iconUrl}" 
                         class="country-icon" 
-                        alt="${countryIcon.name}"
+                        alt="${countryInfo.name}"
                         loading="lazy"
                     />
                 ${props.country || ''}
             </h4>
             <div class="grid-wrapper">
-                ${props.namePolish ? this.#renderRow("Назва польською", props.namePolish) : ''}
+                ${props.nameOriginal ? this.#renderRow(`Назва ${countryInfo.lang}`, props.nameOriginal) : ''}
                 ${props.nameLatin ? this.#renderRow("Назва латиною", props.nameLatin) : ''}
                 ${props.center ? this.#renderRow("Центр", props.center) : ''}
                 ${props.years ? this.#renderRow("Роки існування", props.years) : ''}

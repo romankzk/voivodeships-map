@@ -105,26 +105,32 @@ export const COUNTIES_NAME_MAP = {
 export const FLAG_ICONS = [
     {
         name: KINGDOM_NAME_MAP.Poland,
+        lang: "польською",
         iconUrl: new URL('../assets/icons/poland.png', import.meta.url).href,
     },
     {
         name: KINGDOM_NAME_MAP.Hungary,
+        lang: "угорською",
         iconUrl: new URL('../assets/icons/habsburg.png', import.meta.url).href,
     },
     {
         name: KINGDOM_NAME_MAP.Moldavia,
+        lang: "румунською",
         iconUrl: new URL('../assets/icons/moldavia.png', import.meta.url).href,
     },
     {
         name: KINGDOM_NAME_MAP.Transylvania,
+        lang: "угорською",
         iconUrl: new URL('../assets/icons/transylvania.png', import.meta.url).href,
     },
     {
         name: KINGDOM_NAME_MAP.Turkey,
+        lang: "османською",
         iconUrl: new URL('../assets/icons/turkey.png', import.meta.url).href,
     },
     {
         name: KINGDOM_NAME_MAP.Russia,
+        lang: "російською",
         iconUrl: new URL('../assets/icons/russia.png', import.meta.url).href,
     }
 ]
