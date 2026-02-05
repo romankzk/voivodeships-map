@@ -29,21 +29,9 @@ export class App {
         // Initialize UI
         this.titleControl.addTo(this.map.instance);
         this.infoControl.addTo(this.map.instance);
-        this.searchControl.addTo(this.map.instance);
-
-        const pointsData = await (await fetch('./data/points.geojson')).json();
-
-        const primaryCitiesLayer = new CitiesLayer(pointsData);
-        primaryCitiesLayer.setFilter = (f) => f.properties.type != "starostwo";
-
-        const secondaryCitiesLayer = new CitiesLayer(pointsData);
-        secondaryCitiesLayer.setFilter = (f) => f.properties.type == "starostwo";
-
-        // Initialize layers
-        primaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
-        secondaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
-
-        this.switchPeriod('1620');
+        
+        // Set period by default
+        this.switchPeriod(TIME_PERIODS.PERIOD_1640.id);
     }
 
     async switchPeriod(periodId) {
@@ -56,6 +44,7 @@ export class App {
         const periodConfig = Object.values(TIME_PERIODS).find(p => p.id === periodId);
         const areasData = await (await fetch(`./data/${periodConfig.areasFile}.geojson`)).json();
         const bordersData = await (await fetch(`./data/${periodConfig.bordersFile}.geojson`)).json();
+        const pointsData = await (await fetch(`./data/${periodConfig.pointsFile}.geojson`)).json();
 
         // Create layers
         const regionsLayer = new RegionsLayer(areasData, {
@@ -65,10 +54,22 @@ export class App {
 
         const bordersLayer = new BordersLayer(bordersData);
 
+        const primaryCitiesLayer = new CitiesLayer(pointsData);
+        primaryCitiesLayer.setFilter = (f) => f.properties.adminLevel != 3;
+
+        const secondaryCitiesLayer = new CitiesLayer(pointsData);
+        secondaryCitiesLayer.setFilter = (f) => f.properties.adminLevel == 3;
+
+        // Initialize layers
         const regionsLayerInstance = regionsLayer.init(this.map.instance, this.map.getPane('regionsPane'));
         const bordersLayerInstance = bordersLayer.init(this.map.instance, this.map.getPane('regionsPane'));
+        const primaryCitiesLayerInstance = primaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
+        const secondaryCitiesLayerInstance = secondaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
+        
         this.dataGroup.addLayer(regionsLayerInstance);
         this.dataGroup.addLayer(bordersLayerInstance);
+        this.dataGroup.addLayer(primaryCitiesLayerInstance);
+        this.dataGroup.addLayer(secondaryCitiesLayerInstance);
     }
 
     handleSearchResult(feature) {

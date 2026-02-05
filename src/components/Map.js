@@ -32,6 +32,7 @@ export class Map {
 
         this.instance.createPane('citiesPane');
         this.instance.getPane('citiesPane').style.zIndex = 600;
+        this.instance.getPane('citiesPane').style.pointerEvents = 'none';
     }
 
     #setupGlobalListeners() {

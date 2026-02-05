@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { STYLES } from '../utils/constants.js';
+import { COUNTIES_NAME_MAP, KINGDOM_NAME_MAP, STYLES } from '../utils/constants.js';
 
 /**
  * Base class for all layers
@@ -69,18 +69,20 @@ export class RegionsLayer extends OverlayLayer {
 
     getFeatureColor(division) {
         const mapping = {
-            "Київське воєводство": STYLES.FeatureFillColors.KIJOWSKIE,
-            "Київське воєводство (до 1667)": STYLES.FeatureFillColors.KIJOWSKIE_1667,
-            "Руське воєводство": STYLES.FeatureFillColors.RUSKIE,
-            "Волинське воєводство": STYLES.FeatureFillColors.WOLYNSKIE,
-            "Чернігівське воєводство": STYLES.FeatureFillColors.CZERNIHOWSKIE,
-            "Белзьке воєводство": STYLES.FeatureFillColors.BELZKIE,
-            "Подільське воєводство": STYLES.FeatureFillColors.PODOLSKIE,
-            "Брацлавське воєводство": STYLES.FeatureFillColors.BRACLAWSKIE,
-            "Берестейське воєводство": STYLES.FeatureFillColors.BRZESKOLITEWSKIE
+            [COUNTIES_NAME_MAP.Kyiv]: STYLES.FeatureFillColors.Cyan,
+            [COUNTIES_NAME_MAP.Rus]: STYLES.FeatureFillColors.Blue,
+            [COUNTIES_NAME_MAP.Volyn]: STYLES.FeatureFillColors.Purple,
+            [COUNTIES_NAME_MAP.Chernihiv]: STYLES.FeatureFillColors.DarkPurple,
+            [COUNTIES_NAME_MAP.Belz]: STYLES.FeatureFillColors.Crimson,
+            [COUNTIES_NAME_MAP.Podil]: STYLES.FeatureFillColors.Olive,
+            [COUNTIES_NAME_MAP.Bratslav]: STYLES.FeatureFillColors.Pink,
+            [COUNTIES_NAME_MAP.Brest]: STYLES.FeatureFillColors.Gold,
+            [KINGDOM_NAME_MAP.Moldavia]: STYLES.FeatureFillColors.OrangeRed,
+            [KINGDOM_NAME_MAP.Hungary]: STYLES.FeatureFillColors.Green,
+            [KINGDOM_NAME_MAP.Transylvania]: STYLES.FeatureFillColors.Gold,
         };
 
-        return mapping[division] || STYLES.FeatureFillColors.DEFAULT;
+        return mapping[division] || STYLES.FeatureFillColors.Default;
     }
 
     onFeatureMouseOver(e) {
@@ -114,17 +116,17 @@ export class CitiesLayer extends OverlayLayer {
         let markerStyle = STYLES.BaseMarkerStyle;
         let labelClass = "";
 
-        if (feature.properties.type == "wojewodztwo") {
+        if (feature.properties.adminLevel == 1) {
             labelClass = "level1-city-label";
             markerStyle.radius = 8;
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL1;
         }
-        else if (feature.properties.type == "powiat") {
+        else if (feature.properties.adminLevel == 2) {
             labelClass = "level2-city-label";
             markerStyle.radius = 4;
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL2;
         }
-        else if (feature.properties.type == "starostwo") {
+        else if (feature.properties.adminLevel == 3) {
             labelClass = "level3-city-label";
             markerStyle.radius = 3;
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL3;
@@ -133,12 +135,12 @@ export class CitiesLayer extends OverlayLayer {
         return L.circleMarker(coords, markerStyle)
             .bindTooltip(feature.properties.name, {
                 permanent: true,
-                className: labelClass
+                className: labelClass,
             });
     }
 
-    init(mapInstance) {
-        super.init(mapInstance);
+    init(mapInstance, pane) {
+        const instance = super.init(mapInstance, pane);
 
         // Hide secondary cities labels
         document.querySelectorAll('.level3-city-label').forEach(el => {
@@ -149,5 +151,7 @@ export class CitiesLayer extends OverlayLayer {
         document.querySelectorAll('.level2-city-label').forEach(el => {
             el.style.opacity = 0;
         });
+
+        return instance;
     }
 }

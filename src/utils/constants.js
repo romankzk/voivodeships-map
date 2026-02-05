@@ -1,15 +1,20 @@
+/**
+ * Default settings for time periods and sources
+ */
 export const TIME_PERIODS = {
-    PERIOD_1620: {
-        id: "1620",
-        label: "1620-1648",
-        areasFile: "areas-1620",
-        bordersFile: "borders-1620"
+    PERIOD_1640: {
+        id: "1640",
+        label: "1640",
+        areasFile: "areas-1640",
+        bordersFile: "borders-1640",
+        pointsFile: "points-1640"
     },
-    PERIOD_1750: {
-        id: "1750",
-        label: "1750-1770",
-        areasFile: "areas-1750",
-        bordersFile: "borders-1750"
+    PERIOD_1760: {
+        id: "1760",
+        label: "1760",
+        areasFile: "areas-1640",
+        bordersFile: "borders-1640",
+        pointsFile: "points-1760"
     }
 }
 
@@ -53,13 +58,59 @@ export const SOURCES = [
     {
         title: "Любецьке староство (XVI - середина XVII ст.) / І. Кондратьєв, 2014",
         link: "https://shron1.chtyvo.org.ua/Kondratiev_Ihor/Liubetske_starostvo_XVI_-_seredyna_XVII_st.pdf"
+    },
+    {
+        title: "Arcanum Maps",
+        link: "https://maps.arcanum.com/en/"
+    }
+]
+
+/**
+ * Geographical names for consistency
+ */
+export const KINGDOM_NAME_MAP = {
+    Poland: "Річ Посполита",
+    Moldavia: "Молдавське князівство",
+    Hungary: "Угорське королівство (Габсбурзька монархія)",
+    Transylvania: "Трансильванське князівство"
+}
+
+export const COUNTIES_NAME_MAP = {
+    Rus: "Руське воєводство",
+    Belz: "Белзьке воєводство",
+    Brest: "Берестейське воєводство",
+    Volyn: "Волинське воєводство",
+    Podil: "Подільське воєводство",
+    Bratslav: "Брацлавське воєводство",
+    Kyiv: "Київське воєводство",
+    Chernihiv: "Чернігівське воєводство",
+}
+
+/**
+ * Flags and coat of arms icons
+ */
+export const FLAG_ICONS = [
+    {
+        name: KINGDOM_NAME_MAP.Poland,
+        iconUrl: new URL('../assets/icons/poland.png', import.meta.url).href,
+    },
+    {
+        name: KINGDOM_NAME_MAP.Hungary,
+        iconUrl: new URL('../assets/icons/habsburg.png', import.meta.url).href,
+    },
+    {
+        name: KINGDOM_NAME_MAP.Moldavia,
+        iconUrl: new URL('../assets/icons/moldavia.png', import.meta.url).href,
+    },
+    {
+        name: KINGDOM_NAME_MAP.Transylvania,
+        iconUrl: new URL('../assets/icons/transylvania.png', import.meta.url).href,
     }
 ]
 
 /**
  * Base styles to avoid repetition
  */
-
 export const STYLES = {
     BaseBorderStyle: {
         weight: 3,
@@ -92,16 +143,19 @@ export const STYLES = {
     },
 
     FeatureFillColors: {
-        BRACLAWSKIE: "#770c94",
-        RUSKIE: "#2563EB",
-        BELZKIE: "#6d940c",
-        KIJOWSKIE: "#2c781d",
-        KIJOWSKIE_1667: "#4cc533",
-        PODOLSKIE: "#ca7900",
-        WOLYNSKIE: "#eb2581",
-        BRZESKOLITEWSKIE: "#eba925",
-        CZERNIHOWSKIE: "#5a25eb",
-        DEFAULT: "gray"
+        Purple: "#8A2BE2",
+        DarkPurple: "#663399",
+        Brown: "#A52A2A",
+        Crimson: "#DC143C",
+        Cyan: "#008B8B",
+        Pink: "#FF1493",
+        Green: "#006400",
+        Olive: "#808000",
+        Blue: "#1E90FF",
+        Gold: "#FFD700",
+        Orange: "#FFA500",
+        OrangeRed: "#FF4500",
+        Default: "#666"
     },
 
     MarkerFillColors: {
