@@ -133,12 +133,12 @@ export class CitiesLayer extends OverlayLayer {
         return L.circleMarker(coords, markerStyle)
             .bindTooltip(feature.properties.name, {
                 permanent: true,
-                className: labelClass
+                className: labelClass,
             });
     }
 
-    init(mapInstance) {
-        super.init(mapInstance);
+    init(mapInstance, pane) {
+        const instance = super.init(mapInstance, pane);
 
         // Hide secondary cities labels
         document.querySelectorAll('.level3-city-label').forEach(el => {
@@ -149,5 +149,7 @@ export class CitiesLayer extends OverlayLayer {
         document.querySelectorAll('.level2-city-label').forEach(el => {
             el.style.opacity = 0;
         });
+
+        return instance;
     }
 }

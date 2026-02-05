@@ -72,6 +72,7 @@ export class App {
         const bordersLayerInstance = bordersLayer.init(this.map.instance, this.map.getPane('regionsPane'));
         const primaryCitiesLayerInstance = primaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
         const secondaryCitiesLayerInstance = secondaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
+        
         this.dataGroup.addLayer(regionsLayerInstance);
         this.dataGroup.addLayer(bordersLayerInstance);
         this.dataGroup.addLayer(primaryCitiesLayerInstance);

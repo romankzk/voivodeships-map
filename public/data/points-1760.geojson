@@ -108,9 +108,9 @@
 { "type": "Feature", "properties": { "name": "Хотин", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 26.48748805066867, 48.507672020618074 ] } },
 { "type": "Feature", "properties": { "name": "Сучава", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 26.252416414539475, 47.646638529963461 ] } },
 { "type": "Feature", "properties": { "name": "Мармарош-Сигіт", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 23.89302937814449, 47.928027677450068 ] } },
-{ "type": "Feature", "properties": { "name": "Севлюш (Виноградів)", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 23.033393875063165, 48.139884130864758 ] } },
-{ "type": "Feature", "properties": { "name": "Берегсас (Берегове)", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.645828460929796, 48.204500400442875 ] } },
-{ "type": "Feature", "properties": { "name": "Унгвар (Ужгород)", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.300102494913109, 48.619247428233187 ] } },
+{ "type": "Feature", "properties": { "name": "Севлюш", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 23.033393875063165, 48.139884130864758 ] } },
+{ "type": "Feature", "properties": { "name": "Берегсас", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.645828460929796, 48.204500400442875 ] } },
+{ "type": "Feature", "properties": { "name": "Унгвар", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.300102494913109, 48.619247428233187 ] } },
 { "type": "Feature", "properties": { "name": " Шаторальяуйхей", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 21.656167238742473, 48.395827571594118 ] } }
 ]
 }
