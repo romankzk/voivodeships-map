@@ -12,8 +12,8 @@ export const TIME_PERIODS = {
     PERIOD_1760: {
         id: "1760",
         label: "1760",
-        areasFile: "areas-1640",
-        bordersFile: "borders-1640",
+        areasFile: "areas-1760",
+        bordersFile: "borders-1760",
         pointsFile: "points-1760"
     }
 }
@@ -62,6 +62,14 @@ export const SOURCES = [
     {
         title: "Arcanum Maps",
         link: "https://maps.arcanum.com/en/"
+    },
+    {
+        title: "Конфігурація та устрій Вольностей Війська Запорозького Низового за часів Нової Січі / В. І. Мільчев",
+        link: "https://old.istznu.org/dc/file.php?host_id=1&path=/page/issues/20/20/milchev.pdf"
+    },
+    {
+        title: "Територія та кордони Запорозьких земель / Т. А. Балабушевич, 1994",
+        link: "https://shron1.chtyvo.org.ua/Balabushevych_Tetiana/Terytoriia_ta_kordony_zaporozkykh_zemel_16671775_pp.pdf"
     }
 ]
 
@@ -72,7 +80,9 @@ export const KINGDOM_NAME_MAP = {
     Poland: "Річ Посполита",
     Moldavia: "Молдавське князівство",
     Hungary: "Угорське королівство (Габсбурзька монархія)",
-    Transylvania: "Трансильванське князівство"
+    Transylvania: "Трансильванське князівство",
+    Russia: "Російська імперія",
+    Turkey: "Османська імперія"
 }
 
 export const COUNTIES_NAME_MAP = {
@@ -84,6 +94,9 @@ export const COUNTIES_NAME_MAP = {
     Bratslav: "Брацлавське воєводство",
     Kyiv: "Київське воєводство",
     Chernihiv: "Чернігівське воєводство",
+    Hetmanate: "Гетьманщина",
+    Slobozhanshchyna: "Слобідські козацькі полки",
+    Zaporizhzhia: "Військо Запорозьке Низове"
 }
 
 /**
@@ -105,6 +118,14 @@ export const FLAG_ICONS = [
     {
         name: KINGDOM_NAME_MAP.Transylvania,
         iconUrl: new URL('../assets/icons/transylvania.png', import.meta.url).href,
+    },
+    {
+        name: KINGDOM_NAME_MAP.Turkey,
+        iconUrl: new URL('../assets/icons/turkey.png', import.meta.url).href,
+    },
+    {
+        name: KINGDOM_NAME_MAP.Russia,
+        iconUrl: new URL('../assets/icons/russia.png', import.meta.url).href,
     }
 ]
 

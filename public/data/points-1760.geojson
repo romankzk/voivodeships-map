@@ -111,6 +111,13 @@
 { "type": "Feature", "properties": { "name": "Севлюш", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 23.033393875063165, 48.139884130864758 ] } },
 { "type": "Feature", "properties": { "name": "Берегсас", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.645828460929796, 48.204500400442875 ] } },
 { "type": "Feature", "properties": { "name": "Унгвар", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.300102494913109, 48.619247428233187 ] } },
-{ "type": "Feature", "properties": { "name": " Шаторальяуйхей", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 21.656167238742473, 48.395827571594118 ] } }
+{ "type": "Feature", "properties": { "name": " Шаторальяуйхей", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 21.656167238742473, 48.395827571594118 ] } },
+{ "type": "Feature", "properties": { "name": "Батурин", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 32.87765517562945, 51.341243597811278 ] } },
+{ "type": "Feature", "properties": { "name": "Харків", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 36.233206440539171, 49.991102125107368 ] } },
+{ "type": "Feature", "properties": { "name": "Ізюм", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 37.280844200618425, 49.187790947936712 ] } },
+{ "type": "Feature", "properties": { "name": "Острогозьк", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 39.076362095783161, 50.864160114012812 ] } },
+{ "type": "Feature", "properties": { "name": "Охтирка", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 34.887737872155739, 50.311575403818829 ] } },
+{ "type": "Feature", "properties": { "name": "Суми", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 34.802407418759884, 50.91035022065622 ] } },
+{ "type": "Feature", "properties": { "name": "Нова Січ", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 34.148941301464014, 47.539673693145339 ] } }
 ]
 }

@@ -80,6 +80,10 @@ export class RegionsLayer extends OverlayLayer {
             [KINGDOM_NAME_MAP.Moldavia]: STYLES.FeatureFillColors.OrangeRed,
             [KINGDOM_NAME_MAP.Hungary]: STYLES.FeatureFillColors.Green,
             [KINGDOM_NAME_MAP.Transylvania]: STYLES.FeatureFillColors.Gold,
+            [KINGDOM_NAME_MAP.Turkey]: STYLES.FeatureFillColors.DarkPurple,
+            [COUNTIES_NAME_MAP.Hetmanate]: STYLES.FeatureFillColors.DarkPurple,
+            [COUNTIES_NAME_MAP.Zaporizhzhia]: STYLES.FeatureFillColors.Gold,
+            [COUNTIES_NAME_MAP.Slobozhanshchyna]: STYLES.FeatureFillColors.Blue,
         };
 
         return mapping[division] || STYLES.FeatureFillColors.Default;
