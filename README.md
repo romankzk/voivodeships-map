@@ -1,7 +1,5 @@
-## Interactive map of Ukrainian lands within the Polish-Lithuanian Commonwealth
-An interactive map visualizing Ukrainian lands within the Polish-Lithuanian Commonwealth in the time period 1569-1772.
-
-https://romankzk.github.io/voivodeships-map/
+## 🗺️ Interactive map of Ukrainian lands in 16-18 centuries
+An interactive map visualizing Ukrainian lands within the Polish-Lithuanian Commonwealth and other countries in the time period 1569-1772.
 
 
 ## Tech Stack
@@ -32,4 +30,4 @@ npm install
 npm run dev
 ```
 ### Deployment
-This project is configured for GitHub Actions. Pushing to the main branch automatically triggers the build pipeline (vite build) and deploys the optimized ./dist folder to GitHub Pages.
+This project is configured for GitHub Actions. Pushing to the main branch automatically triggers the build pipeline and deploys the optimized ./dist folder to GitHub Pages.
