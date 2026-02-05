@@ -71,7 +71,7 @@ export class InfoControl extends Control {
 
         this.container.innerHTML = `
             <h2>${props.name}</h2>
-            <h3>${props.country != props.higherDivision ? props.higherDivision : ''}</h3>
+            <h3>${props.higherDivision != props.name && props.higherDivision != props.country ? props.higherDivision : ''}</h3>
             <h4>
                 <img src="${countryIcon.iconUrl}" 
                         class="country-icon" 
