@@ -141,7 +141,7 @@ export class TimelineControl extends Control {
     constructor(options = { position: 'topright' }) {
         super(options);
         this.onPeriodChange = options.onPeriodChange;
-        this.currentPeriod = options.initialPeriod || TIME_PERIODS.PERIOD_1620.id;
+        this.currentPeriod = options.initialPeriod || TIME_PERIODS.PERIOD_1640.id;
         this.containerClass = 'timeline-control';
     }
 

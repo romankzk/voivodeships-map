@@ -1,15 +1,17 @@
 export const TIME_PERIODS = {
-    PERIOD_1620: {
-        id: "1620",
-        label: "1620-1648",
-        areasFile: "areas-1620",
-        bordersFile: "borders-1620"
+    PERIOD_1640: {
+        id: "1640",
+        label: "1640",
+        areasFile: "areas-1640",
+        bordersFile: "borders-1640",
+        pointsFile: "points-1640"
     },
-    PERIOD_1750: {
-        id: "1750",
-        label: "1750-1770",
-        areasFile: "areas-1750",
-        bordersFile: "borders-1750"
+    PERIOD_1760: {
+        id: "1760",
+        label: "1760",
+        areasFile: "areas-1640",
+        bordersFile: "borders-1640",
+        pointsFile: "points-1760"
     }
 }
 

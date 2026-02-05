@@ -114,17 +114,17 @@ export class CitiesLayer extends OverlayLayer {
         let markerStyle = STYLES.BaseMarkerStyle;
         let labelClass = "";
 
-        if (feature.properties.type == "wojewodztwo") {
+        if (feature.properties.adminLevel == 1) {
             labelClass = "level1-city-label";
             markerStyle.radius = 8;
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL1;
         }
-        else if (feature.properties.type == "powiat") {
+        else if (feature.properties.adminLevel == 2) {
             labelClass = "level2-city-label";
             markerStyle.radius = 4;
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL2;
         }
-        else if (feature.properties.type == "starostwo") {
+        else if (feature.properties.adminLevel == 3) {
             labelClass = "level3-city-label";
             markerStyle.radius = 3;
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL3;
