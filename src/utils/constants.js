@@ -94,16 +94,19 @@ export const STYLES = {
     },
 
     FeatureFillColors: {
-        BRACLAWSKIE: "#770c94",
-        RUSKIE: "#2563EB",
-        BELZKIE: "#6d940c",
-        KIJOWSKIE: "#2c781d",
-        KIJOWSKIE_1667: "#4cc533",
-        PODOLSKIE: "#ca7900",
-        WOLYNSKIE: "#eb2581",
-        BRZESKOLITEWSKIE: "#eba925",
-        CZERNIHOWSKIE: "#5a25eb",
-        DEFAULT: "gray"
+        Purple: "#8A2BE2",
+        DarkPurple: "#663399",
+        Brown: "#A52A2A",
+        Crimson: "#DC143C",
+        Cyan: "#008B8B",
+        Pink: "#FF1493",
+        Green: "#006400",
+        Olive: "#808000",
+        Blue: "#1E90FF",
+        Gold: "#FFD700",
+        Orange: "#FFA500",
+        OrangeRed: "#FF4500",
+        Default: "#666"
     },
 
     MarkerFillColors: {

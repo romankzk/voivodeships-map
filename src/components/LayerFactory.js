@@ -69,18 +69,19 @@ export class RegionsLayer extends OverlayLayer {
 
     getFeatureColor(division) {
         const mapping = {
-            "Київське воєводство": STYLES.FeatureFillColors.KIJOWSKIE,
-            "Київське воєводство (до 1667)": STYLES.FeatureFillColors.KIJOWSKIE_1667,
-            "Руське воєводство": STYLES.FeatureFillColors.RUSKIE,
-            "Волинське воєводство": STYLES.FeatureFillColors.WOLYNSKIE,
-            "Чернігівське воєводство": STYLES.FeatureFillColors.CZERNIHOWSKIE,
-            "Белзьке воєводство": STYLES.FeatureFillColors.BELZKIE,
-            "Подільське воєводство": STYLES.FeatureFillColors.PODOLSKIE,
-            "Брацлавське воєводство": STYLES.FeatureFillColors.BRACLAWSKIE,
-            "Берестейське воєводство": STYLES.FeatureFillColors.BRZESKOLITEWSKIE
+            "Київське воєводство": STYLES.FeatureFillColors.Cyan,
+            "Руське воєводство": STYLES.FeatureFillColors.Blue,
+            "Волинське воєводство": STYLES.FeatureFillColors.Purple,
+            "Чернігівське воєводство": STYLES.FeatureFillColors.DarkPurple,
+            "Белзьке воєводство": STYLES.FeatureFillColors.Crimson,
+            "Подільське воєводство": STYLES.FeatureFillColors.Olive,
+            "Брацлавське воєводство": STYLES.FeatureFillColors.Pink,
+            "Берестейське воєводство": STYLES.FeatureFillColors.Gold,
+            "Молдовське князівство": STYLES.FeatureFillColors.OrangeRed,
+            "Угорське королівство": STYLES.FeatureFillColors.Green,
         };
 
-        return mapping[division] || STYLES.FeatureFillColors.DEFAULT;
+        return mapping[division] || STYLES.FeatureFillColors.Default;
     }
 
     onFeatureMouseOver(e) {
