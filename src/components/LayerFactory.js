@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { STYLES } from '../utils/constants.js';
+import { COUNTIES_NAME_MAP, KINGDOM_NAME_MAP, STYLES } from '../utils/constants.js';
 
 /**
  * Base class for all layers
@@ -69,17 +69,17 @@ export class RegionsLayer extends OverlayLayer {
 
     getFeatureColor(division) {
         const mapping = {
-            "Київське воєводство": STYLES.FeatureFillColors.Cyan,
-            "Руське воєводство": STYLES.FeatureFillColors.Blue,
-            "Волинське воєводство": STYLES.FeatureFillColors.Purple,
-            "Чернігівське воєводство": STYLES.FeatureFillColors.DarkPurple,
-            "Белзьке воєводство": STYLES.FeatureFillColors.Crimson,
-            "Подільське воєводство": STYLES.FeatureFillColors.Olive,
-            "Брацлавське воєводство": STYLES.FeatureFillColors.Pink,
-            "Берестейське воєводство": STYLES.FeatureFillColors.Gold,
-            "Молдавське князівство": STYLES.FeatureFillColors.OrangeRed,
-            "Угорське королівство (Габсбурзька монархія)": STYLES.FeatureFillColors.Green,
-            "Трансильванське князівство": STYLES.FeatureFillColors.Gold,
+            [COUNTIES_NAME_MAP.Kyiv]: STYLES.FeatureFillColors.Cyan,
+            [COUNTIES_NAME_MAP.Rus]: STYLES.FeatureFillColors.Blue,
+            [COUNTIES_NAME_MAP.Volyn]: STYLES.FeatureFillColors.Purple,
+            [COUNTIES_NAME_MAP.Chernihiv]: STYLES.FeatureFillColors.DarkPurple,
+            [COUNTIES_NAME_MAP.Belz]: STYLES.FeatureFillColors.Crimson,
+            [COUNTIES_NAME_MAP.Podil]: STYLES.FeatureFillColors.Olive,
+            [COUNTIES_NAME_MAP.Bratslav]: STYLES.FeatureFillColors.Pink,
+            [COUNTIES_NAME_MAP.Brest]: STYLES.FeatureFillColors.Gold,
+            [KINGDOM_NAME_MAP.Moldavia]: STYLES.FeatureFillColors.OrangeRed,
+            [KINGDOM_NAME_MAP.Hungary]: STYLES.FeatureFillColors.Green,
+            [KINGDOM_NAME_MAP.Transylvania]: STYLES.FeatureFillColors.Gold,
         };
 
         return mapping[division] || STYLES.FeatureFillColors.Default;

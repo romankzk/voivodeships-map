@@ -1,3 +1,6 @@
+/**
+ * Default settings for time periods and sources
+ */
 export const TIME_PERIODS = {
     PERIOD_1640: {
         id: "1640",
@@ -63,23 +66,44 @@ export const SOURCES = [
 ]
 
 /**
+ * Geographical names for consistency
+ */
+export const KINGDOM_NAME_MAP = {
+    Poland: "Річ Посполита",
+    Moldavia: "Молдавське князівство",
+    Hungary: "Угорське королівство (Габсбурзька монархія)",
+    Transylvania: "Трансильванське князівство"
+}
+
+export const COUNTIES_NAME_MAP = {
+    Rus: "Руське воєводство",
+    Belz: "Белзьке воєводство",
+    Brest: "Берестейське воєводство",
+    Volyn: "Волинське воєводство",
+    Podil: "Подільське воєводство",
+    Bratslav: "Брацлавське воєводство",
+    Kyiv: "Київське воєводство",
+    Chernihiv: "Чернігівське воєводство",
+}
+
+/**
  * Flags and coat of arms icons
  */
 export const FLAG_ICONS = [
     {
-        name: "Річ Посполита",
+        name: KINGDOM_NAME_MAP.Poland,
         iconUrl: new URL('../assets/icons/poland.png', import.meta.url).href,
     },
     {
-        name: "Угорське королівство (Габсбурзька монархія)",
+        name: KINGDOM_NAME_MAP.Hungary,
         iconUrl: new URL('../assets/icons/habsburg.png', import.meta.url).href,
     },
     {
-        name: "Молдавське князівство",
+        name: KINGDOM_NAME_MAP.Moldavia,
         iconUrl: new URL('../assets/icons/moldavia.png', import.meta.url).href,
     },
     {
-        name: "Трансильванське князівство",
+        name: KINGDOM_NAME_MAP.Transylvania,
         iconUrl: new URL('../assets/icons/transylvania.png', import.meta.url).href,
     }
 ]
@@ -87,7 +111,6 @@ export const FLAG_ICONS = [
 /**
  * Base styles to avoid repetition
  */
-
 export const STYLES = {
     BaseBorderStyle: {
         weight: 3,

@@ -25,19 +25,8 @@ export class App {
         // Initialize UI
         this.titleControl.addTo(this.map.instance);
         this.infoControl.addTo(this.map.instance);
-
-        //const pointsData = await (await fetch('./data/points.geojson')).json();
-
-        // const primaryCitiesLayer = new CitiesLayer(pointsData);
-        // primaryCitiesLayer.setFilter = (f) => f.properties.adminLevel != 3;
-
-        // const secondaryCitiesLayer = new CitiesLayer(pointsData);
-        // secondaryCitiesLayer.setFilter = (f) => f.properties.adminLevel == 3;
-
-        // // Initialize layers
-        // primaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
-        // secondaryCitiesLayer.init(this.map.instance, this.map.getPane('citiesPane'));
         
+        // Set period by default
         this.switchPeriod(TIME_PERIODS.PERIOD_1640.id);
     }
 

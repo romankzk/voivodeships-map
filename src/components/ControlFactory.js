@@ -54,6 +54,12 @@ export class InfoControl extends Control {
         this.containerClass = 'info-control';
     }
 
+    update(props) {
+        if (!this.container) return;
+
+        this._renderHtml(props); 
+    }
+
     _renderHtml(props) {
         if (!props) {
             this.container.innerHTML = '<span>Наведіть курсор на карту, щоб переглянути детальну інформацію</span>';
@@ -74,22 +80,16 @@ export class InfoControl extends Control {
                 ${props.country || ''}
             </h4>
             <div class="grid-wrapper">
-                ${props.namePolish ? this._renderRow("Назва польською", props.namePolish) : ''}
-                ${props.nameLatin ? this._renderRow("Назва латиною", props.nameLatin) : ''}
-                ${props.center ? this._renderRow("Центр", props.center) : ''}
-                ${props.years ? this._renderRow("Роки існування", props.years) : ''}
-                ${props.description ? this._renderRow("Додатково", props.description) : ''}
+                ${props.namePolish ? this.#renderRow("Назва польською", props.namePolish) : ''}
+                ${props.nameLatin ? this.#renderRow("Назва латиною", props.nameLatin) : ''}
+                ${props.center ? this.#renderRow("Центр", props.center) : ''}
+                ${props.years ? this.#renderRow("Роки існування", props.years) : ''}
+                ${props.description ? this.#renderRow("Додатково", props.description) : ''}
             </div>
         `;
     }
 
-    update(props) {
-        if (!this.container) return;
-
-        this._renderHtml(props); 
-    }
-
-    _renderRow(label, value) {
+    #renderRow(label, value) {
         if (!value) return '';
         return `
             <dt>${label}:</dt>
@@ -112,19 +112,28 @@ export class TitleControl extends Control {
     update() {
         if (!this.container) return;
 
-        this.container.innerHTML = `
-                <h1>Українські землі у XVII-XVIII ст.</h1>
-                <p>Інтерактивна карта адміністративно-територіального поділу українських земель<br> у складі Речі Посполитої, Угорського королівства та Молдовського князівства.</p>
-                <p>Карта несе лише ознайомчий характер і не претендує на історичну достовірність.</p>
-                <p>Джерела: <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a></p>
-                <ul id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this._renderSourcesList(SOURCES)}</ul>
-            `;
+        this._renderHtml();
     }
 
-    _renderSourcesList(keys) {
+    _renderHtml() {
+        this.container.innerHTML = `
+                <h1>Українські землі у XVII-XVIII ст.</h1>
+                <p>Інтерактивна карта адміністративно-територіального поділу українських земель
+                    <br> у складі Речі Посполитої, Угорського королівства та Молдовського князівства.</p>
+                <p>Карта несе лише ознайомчий характер і не претендує на історичну достовірність.</p>
+                <p>Джерела: 
+                    <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a>
+                </p>
+                <ul id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this.#renderSourcesList(SOURCES)}</ul>`
+    }
+
+    #renderSourcesList(keys) {
         const listItems = keys
             .map(source => {
-                return `<li><a target="_blank" href="${source.link}">${source.title}</a></li>`
+                return `
+                <li>
+                    <a target="_blank" href="${source.link}">${source.title}</a>
+                </li>`
             })
             .join('');
 
@@ -160,15 +169,21 @@ export class TimelineControl extends Control {
         this.containerClass = 'timeline-control';
     }
 
+    _renderHtml() {
+        this.container.innerHTML = Object.values(TIME_PERIODS).map(period => 
+            `<button 
+                class="period-btn ${period.id === this.currentPeriod ? 'active' : ''}" 
+                data-id="${period.id}">
+                ${period.label}
+            </button>
+            `)
+            .join('');
+    }
+
     update() {
         if (!this.container) return;
 
-        this.container.innerHTML = Object.values(TIME_PERIODS).map(period => `
-                    <button class="period-btn ${period.id === this.currentPeriod ? 'active' : ''}" 
-                            data-id="${period.id}">
-                        ${period.label}
-                    </button>
-                `).join('');
+        this._renderHtml();
     }
 
     _setupListeners(container) {
