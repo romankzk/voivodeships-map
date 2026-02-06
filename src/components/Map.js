@@ -27,15 +27,15 @@ export class Map {
 
     #initPanes() {
         this.instance.createPane('regionsPane');
-        this.instance.getPane('regionsPane').style.zIndex = 400;
+        this.instance.getPane('regionsPane').style.zIndex = 450;
         this.instance.getPane('regionsPane').style.pointerEvents = 'none';
 
         this.instance.createPane('bordersPane');
-        this.instance.getPane('bordersPane').style.zIndex = 500;
+        this.instance.getPane('bordersPane').style.zIndex = 550;
         this.instance.getPane('bordersPane').style.pointerEvents = 'none';
 
         this.instance.createPane('citiesPane');
-        this.instance.getPane('citiesPane').style.zIndex = 600;
+        this.instance.getPane('citiesPane').style.zIndex = 620;
         this.instance.getPane('citiesPane').style.pointerEvents = 'none';
     }
 

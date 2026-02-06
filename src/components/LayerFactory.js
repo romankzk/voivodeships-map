@@ -136,7 +136,10 @@ export class CitiesLayer extends OverlayLayer {
             markerStyle.fillColor = STYLES.MarkerFillColors.LEVEL3;
         }
 
-        return L.circleMarker(coords, markerStyle)
+        return L.circleMarker(coords, {
+            ...markerStyle,
+            pane: 'citiesPane'
+        })
             .bindTooltip(feature.properties.name, {
                 permanent: true,
                 className: labelClass,
