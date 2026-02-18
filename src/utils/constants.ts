@@ -1,9 +1,10 @@
+import type { TimePeriodConfig, Source, FlagIcon } from '@/types/index.ts';
+
 /**
  * Configuration for available historical time periods.
  * Each period defines its display label and the GeoJSON filenames for areas, borders, and points.
- * @type {Object<string, {id: string, label: string, areasFile: string, bordersFile: string, pointsFile: string}>}
  */
-export const TIME_PERIODS = {
+export const TIME_PERIODS: Record<string, TimePeriodConfig> = {
     PERIOD_1640: {
         id: "1640",
         label: "1640",
@@ -18,13 +19,12 @@ export const TIME_PERIODS = {
         bordersFile: "borders-1760",
         pointsFile: "points-1760"
     }
-}
+};
 
 /**
  * Academic sources and references used for the map data.
- * @type {Array<{title: string, link: string}>}
  */
-export const SOURCES = [
+export const SOURCES: Source[] = [
     {
         title: "Адміністративно-територіальний устрій Правобережної України / М. Крикун, 1993",
         link: "https://chtyvo.org.ua/authors/Krykun_Mykola/Administratyvno-terytorialnyi_ustrii_Pravoberezhnoi_Ukrainy_v_XV-XVIII_st_Kordony_voievodstv_u_svitl/"
@@ -77,26 +77,20 @@ export const SOURCES = [
         title: "Територія та кордони Запорозьких земель / Т. А. Балабушевич, 1994",
         link: "https://shron1.chtyvo.org.ua/Balabushevych_Tetiana/Terytoriia_ta_kordony_zaporozkykh_zemel_16671775_pp.pdf"
     }
-]
+];
 
-/**
- * Ukrainian translations of kingdom/empire names for display.
- * @type {Object<string, string>}
- */
-export const KINGDOM_NAME_MAP = {
+/** Ukrainian translations of kingdom/empire names. */
+export const KINGDOM_NAME_MAP: Record<string, string> = {
     Poland: "Річ Посполита",
     Moldavia: "Молдавське князівство",
     Hungary: "Угорське королівство (Габсбурзька монархія)",
     Transylvania: "Трансильванське князівство",
     Russia: "Російська імперія",
     Turkey: "Османська імперія"
-}
+};
 
-/**
- * Ukrainian translations of voivodeship/administrative unit names for display.
- * @type {Object<string, string>}
- */
-export const COUNTIES_NAME_MAP = {
+/** Ukrainian translations of voivodeship/administrative unit names. */
+export const COUNTIES_NAME_MAP: Record<string, string> = {
     Rus: "Руське воєводство",
     Belz: "Белзьке воєводство",
     Brest: "Берестейське воєводство",
@@ -108,14 +102,10 @@ export const COUNTIES_NAME_MAP = {
     Hetmanate: "Гетьманщина",
     Slobozhanshchyna: "Слобідські козацькі полки",
     Zaporizhzhia: "Військо Запорозьке Низове"
-}
+};
 
-/**
- * Country flag/coat-of-arms icons with associated language labels.
- * Used in the InfoControl to display the country icon and "original name" language.
- * @type {Array<{name: string, lang: string, iconUrl: string}>}
- */
-export const FLAG_ICONS = [
+/** Country flag/coat-of-arms icons with associated language labels. */
+export const FLAG_ICONS: FlagIcon[] = [
     {
         name: KINGDOM_NAME_MAP.Poland,
         lang: "польською",
@@ -146,19 +136,9 @@ export const FLAG_ICONS = [
         lang: "російською",
         iconUrl: new URL('../assets/icons/russia.png', import.meta.url).href,
     }
-]
+];
 
-/**
- * Shared Leaflet style definitions for map features.
- * Centralizes all visual styling to avoid repetition across layer classes.
- * @type {object}
- * @property {object} BaseBorderStyle - Style for kingdom/empire border lines
- * @property {object} BaseFeatureStyle - Default style for region polygons
- * @property {object} HoverFeatureStyle - Style applied to regions on mouse hover
- * @property {object} BaseMarkerStyle - Default style for city circle markers
- * @property {Object<string, string>} FeatureFillColors - Named color palette for region fills
- * @property {Object<string, string>} MarkerFillColors - Marker fill colors by admin level
- */
+/** Shared Leaflet style definitions for map features. */
 export const STYLES = {
     BaseBorderStyle: {
         weight: 3,
@@ -211,4 +191,23 @@ export const STYLES = {
         LEVEL2: "#ff4f4f",
         LEVEL3: "#FAA85F"
     }
-}
+} as const;
+
+/** Division-to-color mapping for region polygons. */
+export const DIVISION_COLOR_MAP: Record<string, string> = {
+    [COUNTIES_NAME_MAP.Kyiv]: STYLES.FeatureFillColors.Cyan,
+    [COUNTIES_NAME_MAP.Rus]: STYLES.FeatureFillColors.Blue,
+    [COUNTIES_NAME_MAP.Volyn]: STYLES.FeatureFillColors.Purple,
+    [COUNTIES_NAME_MAP.Chernihiv]: STYLES.FeatureFillColors.DarkPurple,
+    [COUNTIES_NAME_MAP.Belz]: STYLES.FeatureFillColors.Crimson,
+    [COUNTIES_NAME_MAP.Podil]: STYLES.FeatureFillColors.Olive,
+    [COUNTIES_NAME_MAP.Bratslav]: STYLES.FeatureFillColors.Pink,
+    [COUNTIES_NAME_MAP.Brest]: STYLES.FeatureFillColors.Gold,
+    [KINGDOM_NAME_MAP.Moldavia]: STYLES.FeatureFillColors.OrangeRed,
+    [KINGDOM_NAME_MAP.Hungary]: STYLES.FeatureFillColors.Green,
+    [KINGDOM_NAME_MAP.Transylvania]: STYLES.FeatureFillColors.Gold,
+    [KINGDOM_NAME_MAP.Turkey]: STYLES.FeatureFillColors.DarkPurple,
+    [COUNTIES_NAME_MAP.Hetmanate]: STYLES.FeatureFillColors.DarkPurple,
+    [COUNTIES_NAME_MAP.Zaporizhzhia]: STYLES.FeatureFillColors.Gold,
+    [COUNTIES_NAME_MAP.Slobozhanshchyna]: STYLES.FeatureFillColors.Blue,
+};

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc)",
+      "Bash(del \"C:\\\\Dev\\\\hobby-projects\\\\voivodeships-map\\\\src\\\\main.ts\")",
+      "Bash(node -e:*)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}
