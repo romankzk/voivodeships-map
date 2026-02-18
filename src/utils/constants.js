@@ -209,6 +209,6 @@ export const STYLES = {
     MarkerFillColors: {
         LEVEL1: "#ff4f4f",
         LEVEL2: "#ff4f4f",
-        LEVEL3: "#fff64f"
+        LEVEL3: "#FAA85F"
     }
 }

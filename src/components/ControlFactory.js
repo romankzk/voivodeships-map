@@ -100,7 +100,11 @@ export class InfoControl extends Control {
      */
     _renderHtml(props) {
         if (!props) {
-            this.container.innerHTML = '<span>Наведіть курсор на карту, щоб переглянути детальну інформацію</span>';
+            const isTouchDevice = 'ontouchstart' in window;
+            const hint = isTouchDevice
+                ? 'Натисніть на область на карті, щоб переглянути детальну інформацію'
+                : 'Наведіть курсор на карту, щоб переглянути детальну інформацію';
+            this.container.innerHTML = `<span>${hint}</span>`;
             return;
         }
 
@@ -156,6 +160,9 @@ export class TitleControl extends Control {
 
         /** @type {boolean} Whether the sources list is currently hidden */
         this.sourcesHidden = true;
+
+        /** @type {boolean} Whether the title body is expanded on mobile */
+        this.bodyExpanded = false;
     }
 
     /**
@@ -169,29 +176,36 @@ export class TitleControl extends Control {
 
     /**
      * Renders the title, legend circles, and toggleable sources list.
+     * On mobile, the body is wrapped in a collapsible container.
      */
     _renderHtml() {
         this.container.innerHTML = `
-                <h1>Українські землі у XVII-XVIII ст.</h1>
-                <p>Дисклеймер: карта несе лише ознайомчий характер і не претендує на історичну достовірність.</p>
-                <h2>Умовні позначення</h2>
-                <div class="legend-item">
-                    <span class="legend-circle level-1-circle"></span>
-                    <span class="legend-text">Центри воєводств, комітатів, цинутів</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-circle level-2-circle"></span>
-                    <span class="legend-text">Центри повітів, полків</span>
-                </div>
-                <div class="legend-item">
-                    <span class="legend-circle level-3-circle"></span>
-                    <span class="legend-text">Центри староств</span>
-                </div>
-                <h2>Джерела</h2>
-                <p>
-                    <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a>
-                </p>
-                <ul id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this.#renderSourcesList(SOURCES)}</ul>`
+                <h1>
+                    <img src="map-logo.svg" alt="Map logo" width="24" height="24">
+                    <span>Українські землі у XVII-XVIII ст.</span>
+                </h1>
+                <button class="title-toggle-btn" id="title-toggle">${this.bodyExpanded ? "згорнути" : "детальніше..."}</button>
+                <div class="title-body ${this.bodyExpanded ? 'expanded' : ''}">
+                    <p>Дана карта є лише гіпотетичною реконструкцією на основі аналізу доступних архівних джерел.<br>Якщо помітили помилку або маєте що додати, повідомте про це автора.</p>
+                    <h2>Умовні позначення</h2>
+                    <div class="legend-item">
+                        <span class="legend-circle level-1-circle"></span>
+                        <span class="legend-text">Центри воєводств, комітатів, цинутів</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-circle level-2-circle"></span>
+                        <span class="legend-text">Центри повітів, полків</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-circle level-3-circle"></span>
+                        <span class="legend-text">Центри староств</span>
+                    </div>
+                    <h2>Джерела</h2>
+                    <p>
+                        <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a>
+                    </p>
+                    <ol id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this.#renderSourcesList(SOURCES)}</ol>
+                </div>`
     }
 
     /**
@@ -213,7 +227,8 @@ export class TitleControl extends Control {
     }
 
     /**
-     * Handles click on the show/hide toggle link for the sources list.
+     * Handles click on the show/hide toggle link for the sources list
+     * and the mobile expand/collapse button for the title body.
      * @param {HTMLElement} container - The control's root DOM element
      */
     _setupListeners(container) {
@@ -227,6 +242,11 @@ export class TitleControl extends Control {
 
                 this.sourcesHidden = this.sourcesHidden ? false : true;
 
+                this.update();
+            }
+
+            if (target.closest('#title-toggle')) {
+                this.bodyExpanded = !this.bodyExpanded;
                 this.update();
             }
         });

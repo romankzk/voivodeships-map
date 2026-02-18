@@ -58,8 +58,25 @@ body {
 }
 
 /* Title control */
+.title-toggle-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+    color: #2c3e50;
+    cursor: pointer;
+    padding: 2px 0;
+    text-decoration: underline;
+}
+
 .title-control h1 {
     margin: 0;
+    color: #2c3e50;
+}
+
+.title-control h1 img {
+    margin-right: 6px;
 }
 
 .title-control p {
@@ -100,7 +117,7 @@ body {
 }
 
 .level-3-circle {
-    background-color: #fff64f;
+    background-color: #FAA85F;
     width: 0.5em;
     height: 0.5em;
 }
@@ -195,6 +212,14 @@ body {
 #sources {
     max-width: 500px;
     overflow-wrap: break-word;
+}
+
+#sources a {
+    text-decoration: none;
+}
+
+#sources a:hover {
+    text-decoration: underline;
 }
 
 .hidden {
@@ -318,4 +343,124 @@ body {
 
 .leaflet-top.leaflet-right .leaflet-control {
     margin: 0;
+}
+
+/* ============================
+   Mobile responsive styles
+   ============================ */
+@media (max-width: 768px) {
+    .base-control {
+        padding: 10px;
+        font-size: 13px;
+        max-width: 70vw;
+    }
+
+    /* Title control: collapsible on mobile */
+    .title-control {
+        max-width: 60vw;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+
+    .title-control h1 {
+        font-size: 16px;
+    }
+
+    .title-control p {
+        font-size: 11px;
+    }
+
+    .title-control .title-body {
+        display: none;
+    }
+
+    .title-control .title-body.expanded {
+        display: block;
+    }
+
+    .title-toggle-btn {
+        display: inline-block;
+    }
+
+    /* Info control */
+    .info-control {
+        max-width: 65vw;
+        font-size: 12px;
+    }
+
+    .info-control h2 {
+        font-size: 16px;
+    }
+
+    .info-control h3,
+    .info-control h4 {
+        font-size: 12px;
+    }
+
+    /* Top-right controls: stack vertically */
+    .leaflet-top.leaflet-right {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+        margin-top: 6px;
+        margin-right: 6px;
+    }
+
+    /* Search control */
+    .search-wrapper {
+        width: 180px;
+    }
+
+    /* Sources */
+    #sources {
+        max-width: 55vw;
+        font-size: 11px;
+    }
+
+    /* City labels: smaller on mobile */
+    .level1-city-label {
+        font-size: 11px;
+    }
+
+    .level3-city-label {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .base-control {
+        padding: 8px;
+        font-size: 12px;
+        max-width: 65vw;
+    }
+
+    .title-control {
+        max-width: 55vw;
+    }
+
+    .title-control h1 {
+        font-size: 14px;
+    }
+
+    .info-control {
+        max-width: 60vw;
+    }
+
+    .info-control h2 {
+        font-size: 14px;
+    }
+
+    .search-wrapper {
+        width: 150px;
+    }
+
+    .search-input {
+        padding: 6px;
+        font-size: 13px;
+    }
+
+    .period-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
 }
