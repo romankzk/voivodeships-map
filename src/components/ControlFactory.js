@@ -2,23 +2,33 @@ import L from 'leaflet';
 import { FLAG_ICONS, SOURCES, TIME_PERIODS } from '@/utils/constants.js';
 
 /**
- * Base class for all controls
+ * Abstract base class for all map UI controls.
+ * Wraps Leaflet's L.Control with a common lifecycle: create container, render HTML, bind events.
+ * Subclasses should override {@link update}, {@link _renderHtml}, and {@link _setupListeners}.
  */
 class Control {
     /**
-     * @constructor
-     * @param {object} - options for L.Control object
+     * @param {object} options - Leaflet control position options
+     * @param {string} [options.position='topleft'] - Control position on the map
      */
     constructor(options = { position: 'topleft' }) {
+        /** @type {object} Leaflet control options */
         this.options = options;
+
+        /** @type {L.Control|null} The Leaflet control instance */
         this.instance = null;
+
+        /** @type {HTMLElement|null} The control's root DOM container */
         this.container = null;
+
+        /** @type {string} CSS class applied to the control container */
         this.containerClass = '';
     }
 
     /**
-     * Method which adds control to the map
-     * @param {L.map} map - map instance
+     * Creates the Leaflet control and adds it to the map.
+     * Initializes the DOM container, renders content, and sets up event listeners.
+     * @param {L.Map} map - The Leaflet map instance
      */
     addTo(map) {
         const ControlClass = L.Control.extend({
@@ -40,27 +50,54 @@ class Control {
         this.instance.addTo(map);
     }
 
+    /**
+     * Updates the control's content. Called after state changes.
+     * @param {object} [props] - Optional properties to pass to the renderer
+     */
     update(props) { }
+
+    /**
+     * Renders the control's inner HTML. Called by {@link update}.
+     * @param {object} [props] - Optional properties for rendering
+     */
     _renderHtml(props) { }
+
+    /**
+     * Sets up DOM event listeners on the control container.
+     * @param {HTMLElement} container - The control's root DOM element
+     */
     _setupListeners(container) { }
 }
 
 /**
- * Class for control which shows details about region
+ * Displays detailed information about a hovered map region.
+ * Shows region name, administrative division, country with flag, original/Latin names,
+ * administrative center, years of existence, and additional notes.
  * @extends Control
  */
 export class InfoControl extends Control {
+    /**
+     * @param {object} [options={position: 'bottomleft'}] - Leaflet control position options
+     */
     constructor(options = { position: 'bottomleft' }) {
         super(options);
         this.containerClass = 'info-control';
     }
 
+    /**
+     * Updates the info panel with region properties, or resets to the default hint.
+     * @param {object|null} [props] - GeoJSON feature properties of the hovered region
+     */
     update(props) {
         if (!this.container) return;
 
         this._renderHtml(props);
     }
 
+    /**
+     * Renders the info panel HTML from region properties.
+     * @param {object|null} props - Region properties (name, country, center, years, etc.)
+     */
     _renderHtml(props) {
         if (!props) {
             this.container.innerHTML = '<span>Наведіть курсор на карту, щоб переглянути детальну інформацію</span>';
@@ -73,8 +110,8 @@ export class InfoControl extends Control {
             <h2>${props.name}</h2>
             <h3>${props.higherDivision != props.name && props.higherDivision != props.country ? props.higherDivision : ''}</h3>
             <h4>
-                <img src="${countryInfo.iconUrl}" 
-                        class="country-icon" 
+                <img src="${countryInfo.iconUrl}"
+                        class="country-icon"
                         alt="${countryInfo.name}"
                         loading="lazy"
                     />
@@ -90,6 +127,12 @@ export class InfoControl extends Control {
         `;
     }
 
+    /**
+     * Renders a single label-value row as a definition list pair.
+     * @param {string} label - The row label text
+     * @param {string} value - The row value text
+     * @returns {string} HTML string for a dt/dd pair, or empty string if value is falsy
+     */
     #renderRow(label, value) {
         if (!value) return '';
         return `
@@ -100,27 +143,38 @@ export class InfoControl extends Control {
 }
 
 /**
- * Class for the control which shows map title and description
+ * Displays the map title, disclaimer, legend, and a collapsible list of academic sources.
  * @extends Control
  */
 export class TitleControl extends Control {
+    /**
+     * @param {object} [options={position: 'topleft'}] - Leaflet control position options
+     */
     constructor(options = { position: 'topleft' }) {
         super(options);
         this.containerClass = 'title-control';
+
+        /** @type {boolean} Whether the sources list is currently hidden */
         this.sourcesHidden = true;
     }
 
+    /**
+     * Re-renders the title control content.
+     */
     update() {
         if (!this.container) return;
 
         this._renderHtml();
     }
 
+    /**
+     * Renders the title, legend circles, and toggleable sources list.
+     */
     _renderHtml() {
         this.container.innerHTML = `
                 <h1>Українські землі у XVII-XVIII ст.</h1>
                 <p>Дисклеймер: карта несе лише ознайомчий характер і не претендує на історичну достовірність.</p>
-                <h2>Легенда</h2>
+                <h2>Умовні позначення</h2>
                 <div class="legend-item">
                     <span class="legend-circle level-1-circle"></span>
                     <span class="legend-text">Центри воєводств, комітатів, цинутів</span>
@@ -134,12 +188,17 @@ export class TitleControl extends Control {
                     <span class="legend-text">Центри староств</span>
                 </div>
                 <h2>Джерела</h2>
-                <p> 
+                <p>
                     <a id="toggle-link" href="#">${this.sourcesHidden ? "показати" : "сховати"}</a>
                 </p>
                 <ul id="sources" class="${this.sourcesHidden ? "hidden" : ""}">${this.#renderSourcesList(SOURCES)}</ul>`
     }
 
+    /**
+     * Renders the sources as an HTML list of links.
+     * @param {Array<{title: string, link: string}>} keys - Array of source objects
+     * @returns {string} HTML string of <li> elements
+     */
     #renderSourcesList(keys) {
         const listItems = keys
             .map(source => {
@@ -153,6 +212,10 @@ export class TitleControl extends Control {
         return listItems;
     }
 
+    /**
+     * Handles click on the show/hide toggle link for the sources list.
+     * @param {HTMLElement} container - The control's root DOM element
+     */
     _setupListeners(container) {
         container.addEventListener('click', (e) => {
             const target = e.target;
@@ -171,38 +234,74 @@ export class TitleControl extends Control {
 }
 
 /**
- * Class for controls which allows switching between different time periods
+ * Provides buttons for switching between historical time periods.
+ * Supports a loading state that disables buttons during data fetching.
  * @extends Control
  */
 export class TimelineControl extends Control {
+    /**
+     * @param {object} options - Control options
+     * @param {string} [options.position='topright'] - Control position on the map
+     * @param {Function} [options.onPeriodChange] - Callback invoked with the new period ID on switch
+     * @param {string} [options.initialPeriod] - The initially active period ID
+     */
     constructor(options = { position: 'topright' }) {
         super(options);
+
+        /** @type {Function|undefined} Callback for period change events */
         this.onPeriodChange = options.onPeriodChange;
+
+        /** @type {string} The currently active period ID */
         this.currentPeriod = options.initialPeriod || TIME_PERIODS.PERIOD_1640.id;
+
+        /** @type {boolean} Whether data is currently being loaded */
+        this.loading = false;
+
         this.containerClass = 'timeline-control';
     }
 
+    /**
+     * Renders period buttons, marking the current period as active and disabling all when loading.
+     */
     _renderHtml() {
         this.container.innerHTML = Object.values(TIME_PERIODS).map(period =>
-            `<button 
-                class="period-btn ${period.id === this.currentPeriod ? 'active' : ''}" 
-                data-id="${period.id}">
+            `<button
+                class="period-btn ${period.id === this.currentPeriod ? 'active' : ''}"
+                data-id="${period.id}"
+                ${this.loading ? 'disabled' : ''}>
                 ${period.label}
             </button>
             `)
             .join('');
     }
 
+    /**
+     * Re-renders the timeline buttons.
+     */
     update() {
         if (!this.container) return;
 
         this._renderHtml();
     }
 
+    /**
+     * Sets the loading state and re-renders buttons accordingly.
+     * @param {boolean} isLoading - Whether data is currently being fetched
+     */
+    setLoading(isLoading) {
+        this.loading = isLoading;
+        this.update();
+    }
+
+    /**
+     * Handles click events on period buttons.
+     * Updates the active state and notifies the app via the onPeriodChange callback.
+     * @param {HTMLElement} container - The control's root DOM element
+     */
     _setupListeners(container) {
         container.addEventListener('click', (e) => {
             const btn = e.target.closest('.period-btn');
-            if (!btn) return;
+            if (!btn || this.loading) return;
 
             const periodId = btn.dataset.id;
 
@@ -219,16 +318,27 @@ export class TimelineControl extends Control {
 }
 
 /**
- * Class for control which allows searching the map
+ * Provides a search input that queries OpenStreetMap Nominatim for locations within Ukraine.
+ * Displays results in a dropdown and notifies the app when a location is selected.
  * @extends Control
  */
 export class SearchControl extends Control {
+    /**
+     * @param {object} options - Control options
+     * @param {Function} options.onLocationSelect - Callback invoked with the selected GeoJSON-like feature
+     */
     constructor(options = { onLocationSelect }) {
         super({ position: 'topright' });
+
+        /** @type {Function} Callback for location selection */
         this.onLocationSelect = options.onLocationSelect;
+
         this.containerClass = 'search-control';
     }
 
+    /**
+     * Renders the search input and results dropdown.
+     */
     update() {
         if (!this.container) return;
 
@@ -240,6 +350,10 @@ export class SearchControl extends Control {
                 `;
     }
 
+    /**
+     * Sets up debounced input handling for search queries and click handling for result selection.
+     * @param {HTMLElement} container - The control's root DOM element
+     */
     _setupListeners(container) {
         const input = container.querySelector('.search-input');
         const resultsList = container.querySelector('.search-results');
@@ -276,11 +390,12 @@ export class SearchControl extends Control {
     }
 
     /**
-     * Fetches results from OpenStreetMap Nominatim API
-     * @private
+     * Queries the OpenStreetMap Nominatim API for locations matching the search term.
+     * Results are restricted to Ukraine and returned in Ukrainian.
+     * @param {string} query - The search query string
+     * @returns {Promise<Array<object>>} Array of GeoJSON-like feature objects
      */
     async #searchOSM(query) {
-        // We can restrict search to Ukraine or specific bounding boxes to keep it relevant
         const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&countrycodes=ua`;
 
         try {
@@ -306,6 +421,11 @@ export class SearchControl extends Control {
         }
     }
 
+    /**
+     * Renders search results into the dropdown list.
+     * @param {Array<object>} matches - Array of GeoJSON-like feature objects
+     * @param {HTMLUListElement} listElement - The <ul> element to render results into
+     */
     #renderResults(matches, listElement) {
         if (matches.length === 0) {
             listElement.style.display = 'none';
@@ -322,6 +442,10 @@ export class SearchControl extends Control {
         listElement.style.display = 'block';
     }
 
+    /**
+     * Invokes the location selection callback with the chosen feature.
+     * @param {object} feature - The selected GeoJSON-like feature
+     */
     #handleSelection(feature) {
         if (this.onLocationSelect) {
             this.onLocationSelect(feature);

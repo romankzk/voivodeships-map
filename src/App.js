@@ -1,16 +1,28 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { Map } from './components/Map.js';
+import { MapView } from './components/MapView.js';
 import { RegionsLayer, BordersLayer, CitiesLayer } from './components/LayerFactory.js';
 import { InfoControl, TitleControl, TimelineControl, SearchControl } from './components/ControlFactory.js';
 import { TIME_PERIODS } from './utils/constants.js';
 
+/**
+ * Main application orchestrator.
+ * Manages the map instance, UI controls, data layers, and user interactions.
+ */
 export class App {
     constructor() {
-        this.map = new Map('map');
+        /** @type {MapView} */
+        this.map = new MapView('map');
+
+        /** @type {L.LayerGroup} Layer group for period-specific data (regions, borders, cities) */
         this.dataGroup = L.layerGroup().addTo(this.map.instance);
+
+        /** @type {L.LayerGroup} Layer group for search result markers */
         this.searchLayer = L.layerGroup().addTo(this.map.instance);
+
+        /** @type {HTMLElement} Loading overlay element */
+        this.spinner = this.#createSpinner();
 
         this.titleControl = new TitleControl();
         this.infoControl = new InfoControl();
@@ -20,7 +32,34 @@ export class App {
         this.init();
     }
 
-    async init() {
+    /**
+     * Creates an SVG loading spinner overlay and appends it to the map container.
+     * @returns {HTMLElement} The spinner overlay element
+     */
+    #createSpinner() {
+        const overlay = document.createElement('div');
+        overlay.className = 'map-loading-overlay';
+        overlay.innerHTML = `
+            <svg class="loading-spinner" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" fill="none" stroke-width="4" stroke-linecap="round" />
+            </svg>`;
+        document.getElementById('map').appendChild(overlay);
+        return overlay;
+    }
+
+    /**
+     * Toggles the loading state across the spinner overlay and timeline buttons.
+     * @param {boolean} isLoading - Whether the app is currently loading data
+     */
+    #setLoading(isLoading) {
+        this.spinner.classList.toggle('visible', isLoading);
+        this.timelineControl.setLoading(isLoading);
+    }
+
+    /**
+     * Initializes all UI controls and loads the default time period.
+     */
+    init() {
         this.timelineControl = new TimelineControl({
             onPeriodChange: (periodId) => this.switchPeriod(periodId)
         });
@@ -35,17 +74,32 @@ export class App {
         this.switchPeriod(TIME_PERIODS.PERIOD_1640.id);
     }
 
+    /**
+     * Switches the displayed time period by fetching new GeoJSON data and recreating all map layers.
+     * @param {string} periodId - The ID of the period to switch to (e.g. "1640", "1760")
+     */
     async switchPeriod(periodId) {
         // 1. Clean up existing layers
         this.dataGroup.clearLayers();
-
         this.infoControl.update(null);
+        this.timelineControl.currentPeriod = periodId;
+        this.#setLoading(true);
 
         // 2. Fetch new data based on period
         const periodConfig = Object.values(TIME_PERIODS).find(p => p.id === periodId);
-        const areasData = await (await fetch(`./data/${periodConfig.areasFile}.geojson`)).json();
-        const bordersData = await (await fetch(`./data/${periodConfig.bordersFile}.geojson`)).json();
-        const pointsData = await (await fetch(`./data/${periodConfig.pointsFile}.geojson`)).json();
+        let areasData, bordersData, pointsData;
+
+        try {
+            [areasData, bordersData, pointsData] = await Promise.all([
+                fetch(`./data/${periodConfig.areasFile}.geojson`).then(r => r.json()),
+                fetch(`./data/${periodConfig.bordersFile}.geojson`).then(r => r.json()),
+                fetch(`./data/${periodConfig.pointsFile}.geojson`).then(r => r.json()),
+            ]);
+        } catch (error) {
+            console.error("Failed to load geojson files:", error);
+            this.#setLoading(false);
+            return;
+        }
 
         // Create layers
         const regionsLayer = new RegionsLayer(areasData, {
@@ -71,8 +125,14 @@ export class App {
         this.dataGroup.addLayer(bordersLayerInstance);
         this.dataGroup.addLayer(primaryCitiesLayerInstance);
         this.dataGroup.addLayer(secondaryCitiesLayerInstance);
+
+        this.#setLoading(false);
     }
 
+    /**
+     * Handles a search result selection by placing a marker on the map and flying to its location.
+     * @param {object} feature - GeoJSON-like feature with geometry.coordinates and properties.name
+     */
     handleSearchResult(feature) {
         this.searchLayer.clearLayers();
 

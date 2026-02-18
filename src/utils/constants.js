@@ -1,5 +1,7 @@
 /**
- * Default settings for time periods and sources
+ * Configuration for available historical time periods.
+ * Each period defines its display label and the GeoJSON filenames for areas, borders, and points.
+ * @type {Object<string, {id: string, label: string, areasFile: string, bordersFile: string, pointsFile: string}>}
  */
 export const TIME_PERIODS = {
     PERIOD_1640: {
@@ -18,6 +20,10 @@ export const TIME_PERIODS = {
     }
 }
 
+/**
+ * Academic sources and references used for the map data.
+ * @type {Array<{title: string, link: string}>}
+ */
 export const SOURCES = [
     {
         title: "Адміністративно-територіальний устрій Правобережної України / М. Крикун, 1993",
@@ -74,7 +80,8 @@ export const SOURCES = [
 ]
 
 /**
- * Geographical names for consistency
+ * Ukrainian translations of kingdom/empire names for display.
+ * @type {Object<string, string>}
  */
 export const KINGDOM_NAME_MAP = {
     Poland: "Річ Посполита",
@@ -85,6 +92,10 @@ export const KINGDOM_NAME_MAP = {
     Turkey: "Османська імперія"
 }
 
+/**
+ * Ukrainian translations of voivodeship/administrative unit names for display.
+ * @type {Object<string, string>}
+ */
 export const COUNTIES_NAME_MAP = {
     Rus: "Руське воєводство",
     Belz: "Белзьке воєводство",
@@ -100,7 +111,9 @@ export const COUNTIES_NAME_MAP = {
 }
 
 /**
- * Flags and coat of arms icons
+ * Country flag/coat-of-arms icons with associated language labels.
+ * Used in the InfoControl to display the country icon and "original name" language.
+ * @type {Array<{name: string, lang: string, iconUrl: string}>}
  */
 export const FLAG_ICONS = [
     {
@@ -136,7 +149,15 @@ export const FLAG_ICONS = [
 ]
 
 /**
- * Base styles to avoid repetition
+ * Shared Leaflet style definitions for map features.
+ * Centralizes all visual styling to avoid repetition across layer classes.
+ * @type {object}
+ * @property {object} BaseBorderStyle - Style for kingdom/empire border lines
+ * @property {object} BaseFeatureStyle - Default style for region polygons
+ * @property {object} HoverFeatureStyle - Style applied to regions on mouse hover
+ * @property {object} BaseMarkerStyle - Default style for city circle markers
+ * @property {Object<string, string>} FeatureFillColors - Named color palette for region fills
+ * @property {Object<string, string>} MarkerFillColors - Marker fill colors by admin level
  */
 export const STYLES = {
     BaseBorderStyle: {
