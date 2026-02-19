@@ -5,6 +5,7 @@ import { useLeafletControl } from '@/hooks/useLeafletControl.ts';
 import { useDebounce } from '@/hooks/useDebounce.ts';
 import { useMapContext } from '@/context/MapContext.tsx';
 import type { SearchResultFeature } from '@/types/index.ts';
+import { Search } from 'lucide-react';
 
 /**
  * Provides a search input that queries OpenStreetMap Nominatim for locations within Ukraine.
@@ -52,7 +53,7 @@ export function SearchControl() {
                 iconAnchor: [16, 32],
                 popupAnchor: [0, -24],
             })
-        }).bindPopup(`<span class="tooltip-text">${feature.properties.name}</span>`);
+        }).bindPopup(`<span class="font-bold font-[Inter,sans-serif]">${feature.properties.name}</span>`);
 
         searchLayer.addLayer(marker);
         marker.openPopup();
@@ -65,24 +66,25 @@ export function SearchControl() {
     if (!container) return null;
 
     return createPortal(
-        <div className="search-wrapper">
+        <div className="relative w-60 flex flex-row items-center text-sm p-1 bg-white dark:bg-slate-900 dark:text-white rounded-lg shadow-lg">
+            <Search size={18} className="text-gray-400 dark:text-slate-600 ml-2"/>
             <input
                 type="text"
-                className="search-input"
+                className="w-full p-2 text-sm border-none rounded box-border focus:outline-none placeholder-gray-400 dark:placeholder-slate-600"
                 placeholder="Шукати на карті..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
             {showResults && (
-                <ul className="search-results" style={{ display: 'block' }}>
+                <ul className="absolute top-full left-0 right-0 bg-white list-none mt-1 p-0 border border-slate-300 max-h-[200px] overflow-y-auto z-[1000] shadow-md rounded dark:bg-slate-900 dark:border-slate-800">
                     {results.map((feature, i) => (
                         <li
                             key={i}
-                            className="search-item"
+                            className="px-3 py-2 cursor-pointer border-b border-slate-100 flex flex-col hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-800"
                             onClick={() => handleSelection(feature)}
                         >
-                            <span className="item-name">{feature.properties.name}</span>
-                            <span className="item-meta">{feature.properties.higherDivision}</span>
+                            <span className="font-medium text-sm">{feature.properties.name}</span>
+                            <span className="text-[10px] text-slate-500">{feature.properties.higherDivision}</span>
                         </li>
                     ))}
                 </ul>

@@ -14,18 +14,22 @@ export function TimelineControl() {
     if (!container) return null;
 
     return createPortal(
-        <>
+        <div className="flex gap-1 p-1 text-sm bg-white dark:bg-slate-900 rounded-lg shadow-lg">
             {Object.values(TIME_PERIODS).map(period => (
                 <button
                     key={period.id}
-                    className={`period-btn ${period.id === currentPeriod ? 'active' : ''}`}
+                    className={`px-3 py-2 border-none cursor-pointer rounded transition-all duration-200
+                        ${period.id === currentPeriod
+                            ? 'bg-slate-900 text-white dark:bg-slate-200 dark:text-slate-900'
+                            : 'bg-white hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800'}
+                        disabled:opacity-50 disabled:cursor-not-allowed`}
                     disabled={isLoading}
                     onClick={() => setCurrentPeriod(period.id)}
                 >
                     {period.label}
                 </button>
             ))}
-        </>,
+        </div>,
         container
     );
 }

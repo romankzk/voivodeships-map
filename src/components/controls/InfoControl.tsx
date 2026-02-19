@@ -10,7 +10,7 @@ import { FLAG_ICONS } from '@/utils/constants.ts';
  */
 export function InfoControl() {
     const { map, hoveredRegion } = useMapContext();
-    const container = useLeafletControl(map, 'bottomleft', 'info-control');
+    const container = useLeafletControl(map, 'bottomleft');
 
     if (!container) return null;
 
@@ -26,7 +26,7 @@ function DefaultHint() {
         ? 'Натисніть на область на карті, щоб переглянути детальну інформацію'
         : 'Наведіть курсор на карту, щоб переглянути детальну інформацію';
 
-    return <span>{hint}</span>;
+    return <div className="p-4 text-slate-500 dark:text-slate-600">{hint}</div>;
 }
 
 function RegionInfo({ props }: { props: NonNullable<ReturnType<typeof useMapContext>['hoveredRegion']> }) {
@@ -34,37 +34,37 @@ function RegionInfo({ props }: { props: NonNullable<ReturnType<typeof useMapCont
     const showDivision = props.higherDivision !== props.name && props.higherDivision !== props.country;
 
     return (
-        <>
-            <h2>{props.name}</h2>
-            <h3>{showDivision ? props.higherDivision : ''}</h3>
+        <div className="p-4">
+            <h2 className="m-0 text-xl text-slate-900 dark:text-slate-200 font-bold">{props.name}</h2>
+            <h3 className="font-normal text-sm mt-1 mb-2 text-slate-600 dark:text-slate-400">{showDivision ? props.higherDivision : ''}</h3>
             {countryInfo && (
-                <h4>
+                <h4 className="font-normal mt-1 mb-2 text-slate-600 dark:text-slate-400 flex items-center gap-2">
                     <img
                         src={countryInfo.iconUrl}
-                        className="country-icon"
+                        className="h-2.5 object-contain shrink-0 [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] align-middle"
                         alt={countryInfo.name}
                         loading="lazy"
                     />
                     {props.country}
                 </h4>
             )}
-            {!countryInfo && props.country && <h4>{props.country}</h4>}
-            <div className="grid-wrapper">
+            {!countryInfo && props.country && <h4 className="font-normal mt-1 mb-2 text-slate-600 dark:text-slate-400 flex items-center gap-2">{props.country}</h4>}
+            <dl className="grid grid-cols-[fit-content(200px)_1fr] gap-x-2 gap-y-1 mt-2 content-start">
                 {props.nameOriginal && countryInfo && <InfoRow label={`Назва ${countryInfo.lang}`} value={props.nameOriginal} />}
                 {props.nameLatin && <InfoRow label="Назва латиною" value={props.nameLatin} />}
                 {props.center && <InfoRow label="Центр" value={props.center} />}
                 {props.years && <InfoRow label="Роки існування" value={props.years} />}
                 {props.description && <InfoRow label="Додатково" value={props.description} />}
-            </div>
-        </>
+            </dl>
+        </div>
     );
 }
 
 function InfoRow({ label, value }: { label: string; value: string }) {
     return (
         <>
-            <dt>{label}:</dt>
-            <dd>{value}</dd>
+            <dt className="p-1 ms-0 text-slate-900 dark:text-slate-200 font-semibold">{label}:</dt>
+            <dd className="p-1 ms-0 text-slate-800 dark:text-slate-400">{value}</dd>
         </>
     );
 }

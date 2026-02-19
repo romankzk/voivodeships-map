@@ -18,6 +18,7 @@ import { TitleControl } from '@/components/controls/TitleControl.tsx';
 import { TimelineControl } from '@/components/controls/TimelineControl.tsx';
 import { SearchControl } from '@/components/controls/SearchControl.tsx';
 import { EditButtonControl } from '@/components/controls/EditButtonControl.tsx';
+import { ThemeToggleControl } from '@/components/controls/ThemeToggleControl.tsx';
 
 const filterPrimary = (f: GeoJSON.Feature) => f.properties!.adminLevel !== 3;
 const filterSecondary = (f: GeoJSON.Feature) => f.properties!.adminLevel === 3;
@@ -121,10 +122,13 @@ export function AppRoot() {
                 </>
             )}
 
-            <TimelineControl />
+            
             <TitleControl />
             <InfoControl />
+
             <SearchControl />
+            <TimelineControl /> 
+            <ThemeToggleControl />
             <EditButtonControl />
         </MapProvider>
     );
@@ -132,9 +136,9 @@ export function AppRoot() {
 
 function LoadingOverlay({ isLoading }: { isLoading: boolean }) {
     return (
-        <div className={`map-loading-overlay ${isLoading ? 'visible' : ''}`}>
-            <svg className="loading-spinner" viewBox="0 0 50 50">
-                <circle cx="25" cy="25" r="20" fill="none" strokeWidth="4" strokeLinecap="round" />
+        <div className={`absolute inset-0 z-[1000] flex items-center justify-center bg-white/40 transition-opacity duration-200 ease-out ${isLoading ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+            <svg className="size-12 animate-spin" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" fill="none" strokeWidth="4" strokeLinecap="round" className="stroke-[#2c3e50] [stroke-dasharray:90,150] [stroke-dashoffset:0]" />
             </svg>
         </div>
     );

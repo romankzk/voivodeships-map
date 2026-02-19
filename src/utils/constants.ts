@@ -146,6 +146,12 @@ export const STYLES = {
         color: '#000',
     },
 
+    DarkBorderStyle: {
+        weight: 3,
+        opacity: 0.5,
+        color: '#aaa',
+    },
+
     BaseFeatureStyle: {
         weight: 1.5,
         opacity: 0.5,
@@ -154,11 +160,26 @@ export const STYLES = {
         fillOpacity: 0.1
     },
 
+    DarkFeatureStyle: {
+        weight: 1.5,
+        opacity: 0.5,
+        color: '#aaa',
+        dashArray: '4, 4',
+        fillOpacity: 0.15
+    },
+
     HoverFeatureStyle: {
         weight: 5,
         color: '#000',
         opacity: 0.8,
         fillOpacity: 0.3
+    },
+
+    DarkHoverFeatureStyle: {
+        weight: 5,
+        color: '#aaa',
+        opacity: 0.8,
+        fillOpacity: 0.4
     },
 
     BaseMarkerStyle: {
@@ -187,9 +208,9 @@ export const STYLES = {
     },
 
     MarkerFillColors: {
-        LEVEL1: "#ff4f4f",
-        LEVEL2: "#ff4f4f",
-        LEVEL3: "#FAA85F"
+        LEVEL1: "#ea580c",
+        LEVEL2: "#ea580c",
+        LEVEL3: "#fdba74"
     }
 } as const;
 

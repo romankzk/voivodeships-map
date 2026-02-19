@@ -5,6 +5,14 @@ import { AppRoot } from '@/AppRoot.tsx';
 import { EditorPage } from '@/pages/EditorPage.tsx';
 import '@/assets/style.css';
 
+// Apply persisted theme before first render to avoid flash
+if (
+    localStorage.getItem('theme') === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+) {
+    document.documentElement.classList.add('dark');
+}
+
 /**
  * Application entry point.
  * Uses HashRouter for compatibility with GitHub Pages base path.
