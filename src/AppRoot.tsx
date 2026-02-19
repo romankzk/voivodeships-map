@@ -65,11 +65,6 @@ export function AppRoot() {
         };
     }, [map, dataGroup, searchLayer]);
 
-    // Clear data layers when effective data changes (period switch or override change)
-    useEffect(() => {
-        dataGroup.clearLayers();
-    }, [effectiveData, dataGroup]);
-
     const handleHover = useCallback((props: AreaFeatureProperties) => {
         setHoveredRegion(props);
     }, []);

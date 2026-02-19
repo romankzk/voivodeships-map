@@ -22,10 +22,16 @@ export function usePeriodData(periodId: string): { data: PeriodData | null; isLo
 
         const base = import.meta.env.BASE_URL;
 
+        const fetchJson = (url: string) =>
+            fetch(url, { signal }).then(r => {
+                if (!r.ok) throw new Error(`${r.status} ${r.statusText} for ${url}`);
+                return r.json();
+            });
+
         Promise.all([
-            fetch(`${base}data/${periodConfig.areasFile}.geojson`, { signal }).then(r => r.json()),
-            fetch(`${base}data/${periodConfig.bordersFile}.geojson`, { signal }).then(r => r.json()),
-            fetch(`${base}data/${periodConfig.pointsFile}.geojson`, { signal }).then(r => r.json()),
+            fetchJson(`${base}data/${periodConfig.areasFile}.geojson`),
+            fetchJson(`${base}data/${periodConfig.bordersFile}.geojson`),
+            fetchJson(`${base}data/${periodConfig.pointsFile}.geojson`),
         ])
             .then(([areas, borders, points]) => {
                 setData({ areas, borders, points });
