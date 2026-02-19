@@ -30,8 +30,7 @@ export function useMap(containerRef: RefObject<HTMLDivElement | null>): L.Map | 
         const map = L.map(containerRef.current, {
             center: [48.88, 30.81],
             zoom: 6,
-            zoomControl: false,
-            renderer: L.canvas()
+            zoomControl: false
         });
 
         // Custom panes with z-index ordering: regions < borders < cities
