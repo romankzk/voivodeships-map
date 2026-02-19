@@ -56,10 +56,12 @@ export function EditorPage() {
         setData(null);
         setExpandedFeature(null);
 
+        const base = import.meta.env.BASE_URL;
+
         Promise.all([
-            fetch(`./data/${periodConfig.areasFile}.geojson`, { signal: controller.signal }).then(r => r.json()),
-            fetch(`./data/${periodConfig.bordersFile}.geojson`, { signal: controller.signal }).then(r => r.json()),
-            fetch(`./data/${periodConfig.pointsFile}.geojson`, { signal: controller.signal }).then(r => r.json()),
+            fetch(`${base}data/${periodConfig.areasFile}.geojson`, { signal: controller.signal }).then(r => r.json()),
+            fetch(`${base}data/${periodConfig.bordersFile}.geojson`, { signal: controller.signal }).then(r => r.json()),
+            fetch(`${base}data/${periodConfig.pointsFile}.geojson`, { signal: controller.signal }).then(r => r.json()),
         ])
             .then(([areas, borders, points]) => {
                 setData({ areas, borders, points });

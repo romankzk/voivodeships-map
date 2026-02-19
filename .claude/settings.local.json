@@ -6,7 +6,8 @@
       "Bash(npx tsc)",
       "Bash(del \"C:\\\\Dev\\\\hobby-projects\\\\voivodeships-map\\\\src\\\\main.ts\")",
       "Bash(node -e:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx vite build:*)"
     ]
   }
 }
