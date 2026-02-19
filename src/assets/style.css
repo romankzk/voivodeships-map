@@ -8,7 +8,7 @@ body {
 }
 
 #map {
-    height: 100vh;
+    height: 100dvh;
     position: relative;
 }
 
@@ -30,6 +30,35 @@ body {
 
 .leaflet-top.leaflet-right .leaflet-control {
     margin: 0;
+}
+
+.leaflet-top.leaflet-right .search-control {
+    @apply z-10;
+}
+
+/* ============================
+   Mobile layout
+   ============================ */
+@media (max-width: 640px) {
+    .leaflet-top.leaflet-left {
+        @apply max-w-[50vw];
+    }
+
+    .leaflet-top.leaflet-right {
+        @apply flex-wrap justify-end mt-1.5 mr-1.5 gap-1.5 max-w-[50vw];
+    }
+
+    .leaflet-bottom.leaflet-left {
+        @apply left-0 right-0 bottom-0;
+    }
+
+    .leaflet-bottom.leaflet-left .leaflet-control {
+        @apply m-0;
+    }
+
+    .leaflet-bottom.leaflet-right {
+        @apply bottom-12;
+    }
 }
 
 /* ============================

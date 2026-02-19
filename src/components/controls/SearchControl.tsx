@@ -66,7 +66,7 @@ export function SearchControl() {
     if (!container) return null;
 
     return createPortal(
-        <div className="relative w-60 flex flex-row items-center text-sm p-1 bg-white dark:bg-slate-900 dark:text-white rounded-lg shadow-lg">
+        <div className="relative w-40 sm:w-60 flex flex-row items-center text-sm p-1 bg-white dark:bg-slate-900 dark:text-white rounded-lg shadow-lg">
             <Search size={18} className="text-gray-400 dark:text-slate-600 ml-2"/>
             <input
                 type="text"

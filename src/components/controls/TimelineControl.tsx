@@ -14,11 +14,11 @@ export function TimelineControl() {
     if (!container) return null;
 
     return createPortal(
-        <div className="flex gap-1 p-1 text-sm bg-white dark:bg-slate-900 rounded-lg shadow-lg">
+        <div className="flex gap-1 p-1 text-xs sm:text-sm bg-white dark:bg-slate-900 rounded-lg shadow-lg">
             {Object.values(TIME_PERIODS).map(period => (
                 <button
                     key={period.id}
-                    className={`px-3 py-2 border-none cursor-pointer rounded transition-all duration-200
+                    className={`px-2 py-1.5 sm:px-3 sm:py-2 border-none cursor-pointer rounded transition-all duration-200
                         ${period.id === currentPeriod
                             ? 'bg-slate-900 text-white dark:bg-slate-200 dark:text-slate-900'
                             : 'bg-white hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800'}

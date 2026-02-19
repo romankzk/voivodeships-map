@@ -31,14 +31,14 @@ export function ThemeToggleControl() {
 
     return createPortal(
         <button
-            className="flex items-center text-sm gap-2 p-3 border-none rounded-lg bg-white text-slate-900 cursor-pointer shadow-lg transition-colors duration-200 hover:bg-slate-900 hover:text-white dark:text-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800"
+            className="flex items-center text-sm gap-2 p-2 sm:p-3 border-none rounded-lg bg-white text-slate-900 cursor-pointer shadow-lg transition-colors duration-200 hover:bg-slate-900 hover:text-white dark:text-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800"
             onClick={() => setDarkMode(!darkMode)}
             title={darkMode ? 'Світла тема' : 'Темна тема'}
         >
-            {darkMode ? 
-            <Sun size={20}/>
+            {darkMode ?
+            <Sun size={18} className="sm:size-5" />
             :
-            <Moon size={20}/>}
+            <Moon size={18} className="sm:size-5" />}
         </button>,
         container,
     );

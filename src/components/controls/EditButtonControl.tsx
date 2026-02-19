@@ -19,11 +19,12 @@ export function EditButtonControl() {
 
     return createPortal(
         <button
-            className="flex items-center text-sm gap-2 p-3 border-none rounded-lg bg-white text-slate-900 cursor-pointer shadow-lg transition-colors duration-200 hover:bg-slate-900 hover:text-white dark:text-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800"
+            className="flex items-center text-sm gap-2 p-2 sm:p-3 border-none rounded-lg bg-white text-slate-900 cursor-pointer shadow-lg transition-colors duration-200 hover:bg-slate-900 hover:text-white dark:text-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800"
             onClick={() => navigate(`/editor?period=${currentPeriod}&layer=areas`)}
             title="Редагувати метадані"
         >
-            <Pencil size={16} /> Редагувати
+            <Pencil size={16} />
+            <span className="hidden sm:inline">Редагувати</span>
             {overrideCount > 0 && (
                 <span className="bg-red-500 text-white text-xs font-semibold px-2 py-px rounded-full min-w-4 text-center">{overrideCount}</span>
             )}

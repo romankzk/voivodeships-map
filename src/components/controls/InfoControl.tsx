@@ -7,6 +7,7 @@ import { FLAG_ICONS } from '@/utils/constants.ts';
  * Displays detailed information about a hovered map region.
  * Shows region name, division, country with flag, original/Latin names,
  * administrative center, years, and notes.
+ * On mobile, renders as a compact bottom sheet.
  */
 export function InfoControl() {
     const { map, hoveredRegion } = useMapContext();
@@ -26,7 +27,7 @@ function DefaultHint() {
         ? 'Натисніть на область на карті, щоб переглянути детальну інформацію'
         : 'Наведіть курсор на карту, щоб переглянути детальну інформацію';
 
-    return <div className="p-4 text-slate-500 dark:text-slate-600">{hint}</div>;
+    return <div className="p-3 sm:p-4 text-slate-500 dark:text-slate-600 text-xs sm:text-base">{hint}</div>;
 }
 
 function RegionInfo({ props }: { props: NonNullable<ReturnType<typeof useMapContext>['hoveredRegion']> }) {
@@ -34,11 +35,11 @@ function RegionInfo({ props }: { props: NonNullable<ReturnType<typeof useMapCont
     const showDivision = props.higherDivision !== props.name && props.higherDivision !== props.country;
 
     return (
-        <div className="p-4">
-            <h2 className="m-0 text-xl text-slate-900 dark:text-slate-200 font-bold">{props.name}</h2>
-            <h3 className="font-normal text-sm mt-1 mb-2 text-slate-600 dark:text-slate-400">{showDivision ? props.higherDivision : ''}</h3>
+        <div className="p-3 sm:p-4 max-w-[100vw] sm:max-w-none">
+            <h2 className="m-0 text-lg sm:text-xl text-slate-900 dark:text-slate-200 font-bold">{props.name}</h2>
+            <h3 className="font-normal text-xs sm:text-sm mt-0.5 sm:mt-1 mb-1.5 sm:mb-2 text-slate-600 dark:text-slate-400">{showDivision ? props.higherDivision : ''}</h3>
             {countryInfo && (
-                <h4 className="font-normal mt-1 mb-2 text-slate-600 dark:text-slate-400 flex items-center gap-2">
+                <h4 className="font-normal mt-0.5 sm:mt-1 mb-1.5 sm:mb-2 text-slate-600 dark:text-slate-400 flex items-center gap-2 text-sm">
                     <img
                         src={countryInfo.iconUrl}
                         className="h-2.5 object-contain shrink-0 [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] align-middle"
@@ -48,8 +49,8 @@ function RegionInfo({ props }: { props: NonNullable<ReturnType<typeof useMapCont
                     {props.country}
                 </h4>
             )}
-            {!countryInfo && props.country && <h4 className="font-normal mt-1 mb-2 text-slate-600 dark:text-slate-400 flex items-center gap-2">{props.country}</h4>}
-            <dl className="grid grid-cols-[fit-content(200px)_1fr] gap-x-2 gap-y-1 mt-2 content-start">
+            {!countryInfo && props.country && <h4 className="font-normal mt-0.5 sm:mt-1 mb-1.5 sm:mb-2 text-slate-600 dark:text-slate-400 flex items-center gap-2 text-sm">{props.country}</h4>}
+            <dl className="grid grid-cols-[fit-content(200px)_1fr] gap-x-2 gap-y-0.5 sm:gap-y-1 mt-1.5 sm:mt-2 content-start text-sm">
                 {props.nameOriginal && countryInfo && <InfoRow label={`Назва ${countryInfo.lang}`} value={props.nameOriginal} />}
                 {props.nameLatin && <InfoRow label="Назва латиною" value={props.nameLatin} />}
                 {props.center && <InfoRow label="Центр" value={props.center} />}
@@ -63,8 +64,8 @@ function RegionInfo({ props }: { props: NonNullable<ReturnType<typeof useMapCont
 function InfoRow({ label, value }: { label: string; value: string }) {
     return (
         <>
-            <dt className="p-1 ms-0 text-slate-900 dark:text-slate-200 font-semibold">{label}:</dt>
-            <dd className="p-1 ms-0 text-slate-800 dark:text-slate-400">{value}</dd>
+            <dt className="p-0.5 sm:p-1 ms-0 text-slate-900 dark:text-slate-200 font-semibold">{label}:</dt>
+            <dd className="p-0.5 sm:p-1 ms-0 text-slate-800 dark:text-slate-400">{value}</dd>
         </>
     );
 }

@@ -109,13 +109,13 @@ export function EditorPage() {
     };
 
     return (
-        <div className="font-[Inter,sans-serif] max-w-[900px] mx-auto p-5 min-h-screen box-border dark:bg-slate-900">
-            <header className="flex items-center justify-between gap-4 mb-5 flex-wrap">
-                <div className="flex items-center gap-4">
+        <div className="font-[Inter,sans-serif] max-w-[900px] mx-auto px-3 py-4 sm:p-5 min-h-screen box-border dark:bg-slate-900">
+            <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-5">
+                <div className="flex items-center gap-3 sm:gap-4">
                     <Link to="/" className="flex items-center gap-2 text-xs text-[#2c3e50] no-underline px-3 py-1.5 rounded-md bg-slate-100 transition-colors hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 whitespace-nowrap">
                         <ArrowLeft size={14}/> На карту
                     </Link>
-                    <h1 className="m-0 text-2xl text-slate-900 dark:text-slate-100 font-semibold">Редактор метаданих</h1>
+                    <h1 className="m-0 text-xl sm:text-2xl text-slate-900 dark:text-slate-100 font-semibold">Редактор метаданих</h1>
                 </div>
                 <div className="flex items-center gap-2.5">
                     {overrideCount > 0 && (
@@ -136,11 +136,11 @@ export function EditorPage() {
                 </div>
             </header>
 
-            <div className="flex items-center gap-5 px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg mb-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 px-3 sm:px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg mb-4">
                 <div className="flex items-center gap-2">
                     <label className="text-[13px] font-medium text-slate-600 dark:text-slate-100">Період:</label>
                     <select
-                        className="px-3 py-1.5 border border-slate-300 dark:border-slate-800 dark:bg-slate-700 dark:text-white rounded-md bg-white font-[inherit] text-[13px]"
+                        className="flex-1 sm:flex-none px-3 py-1.5 border border-slate-300 dark:border-slate-800 dark:bg-slate-700 dark:text-white rounded-md bg-white font-[inherit] text-[13px]"
                         value={periodId}
                         onChange={e => updateParam('period', e.target.value)}
                     >
@@ -153,7 +153,7 @@ export function EditorPage() {
                 <div className="flex items-center gap-2">
                     <label className="text-[13px] font-medium text-slate-600 dark:text-slate-100">Шар:</label>
                     <select
-                        className="px-3 py-1.5 border border-slate-300 dark:border-slate-800 dark:bg-slate-700 dark:text-white rounded-md bg-white font-[inherit] text-[13px]"
+                        className="flex-1 sm:flex-none px-3 py-1.5 border border-slate-300 dark:border-slate-800 dark:bg-slate-700 dark:text-white rounded-md bg-white font-[inherit] text-[13px]"
                         value={layerType}
                         onChange={e => updateParam('layer', e.target.value)}
                     >
@@ -163,7 +163,7 @@ export function EditorPage() {
                     </select>
                 </div>
 
-                <span className="text-[13px] text-gray-400 ml-auto">
+                <span className="text-[13px] text-gray-400 sm:ml-auto">
                     {features.length} об'єктів
                 </span>
             </div>
@@ -293,7 +293,7 @@ function FeatureEditor({
     };
 
     return (
-        <div className="py-2 pr-3 pl-14 flex flex-col gap-1.5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800">
+        <div className="py-2 px-3 sm:pr-3 sm:pl-14 flex flex-col gap-1.5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800">
             {propKeys.map(key => {
                 const value = properties[key];
                 const displayValue = value === null || value === undefined ? '' : String(value);
@@ -302,7 +302,7 @@ function FeatureEditor({
                 return (
                     <div key={key} className="flex items-center gap-2">
                         <label
-                            className={`text-xs min-w-30 max-w-30 truncate ${modified ? 'text-amber-600 font-semibold' : 'text-slate-500 dark:text-slate-300'}`}
+                            className={`text-xs min-w-20 max-w-20 sm:min-w-30 sm:max-w-30 truncate ${modified ? 'text-amber-600 font-semibold' : 'text-slate-500 dark:text-slate-300'}`}
                             title={key}
                         >
                             {key}
