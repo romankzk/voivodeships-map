@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 
 import { useMap } from '@/hooks/useMap.ts';
 import { usePeriodData } from '@/hooks/usePeriodData.ts';
+import { useApplyOverrides } from '@/hooks/useOverrides.ts';
 import { MapProvider } from '@/context/MapContext.tsx';
 import { TIME_PERIODS } from '@/utils/constants.ts';
 import type { AreaFeatureProperties, MapContextValue } from '@/types/index.ts';
@@ -16,6 +17,7 @@ import { InfoControl } from '@/components/controls/InfoControl.tsx';
 import { TitleControl } from '@/components/controls/TitleControl.tsx';
 import { TimelineControl } from '@/components/controls/TimelineControl.tsx';
 import { SearchControl } from '@/components/controls/SearchControl.tsx';
+import { EditButtonControl } from '@/components/controls/EditButtonControl.tsx';
 
 const filterPrimary = (f: GeoJSON.Feature) => f.properties!.adminLevel !== 3;
 const filterSecondary = (f: GeoJSON.Feature) => f.properties!.adminLevel === 3;
@@ -36,6 +38,20 @@ export function AppRoot() {
     const [searchLayer] = useState(() => L.layerGroup());
     const [dataGroup] = useState(() => L.layerGroup());
 
+    // Apply in-memory overrides to each layer's data
+    const applyAreasOverrides = useApplyOverrides(currentPeriod, 'areas');
+    const applyBordersOverrides = useApplyOverrides(currentPeriod, 'borders');
+    const applyPointsOverrides = useApplyOverrides(currentPeriod, 'points');
+
+    const effectiveData = useMemo(() => {
+        if (!data) return null;
+        return {
+            areas: applyAreasOverrides(data.areas),
+            borders: applyBordersOverrides(data.borders),
+            points: applyPointsOverrides(data.points),
+        };
+    }, [data, applyAreasOverrides, applyBordersOverrides, applyPointsOverrides]);
+
     // Add layer groups to map once
     useEffect(() => {
         if (!map) return;
@@ -48,10 +64,10 @@ export function AppRoot() {
         };
     }, [map, dataGroup, searchLayer]);
 
-    // Clear data layers when new data arrives (period switch)
+    // Clear data layers when effective data changes (period switch or override change)
     useEffect(() => {
         dataGroup.clearLayers();
-    }, [data, dataGroup]);
+    }, [effectiveData, dataGroup]);
 
     const handleHover = useCallback((props: AreaFeatureProperties) => {
         setHoveredRegion(props);
@@ -76,29 +92,29 @@ export function AppRoot() {
             <div id="map" ref={mapContainerRef} />
             <LoadingOverlay isLoading={isLoading} />
 
-            {map && data && (
+            {map && effectiveData && (
                 <>
                     <RegionsLayer
                         map={map}
-                        data={data.areas}
+                        data={effectiveData.areas}
                         layerGroup={dataGroup}
                         onHover={handleHover}
                         onHoverEnd={handleHoverEnd}
                     />
                     <BordersLayer
                         map={map}
-                        data={data.borders}
+                        data={effectiveData.borders}
                         layerGroup={dataGroup}
                     />
                     <CitiesLayer
                         map={map}
-                        data={data.points}
+                        data={effectiveData.points}
                         layerGroup={dataGroup}
                         filterFn={filterPrimary}
                     />
                     <CitiesLayer
                         map={map}
-                        data={data.points}
+                        data={effectiveData.points}
                         layerGroup={dataGroup}
                         filterFn={filterSecondary}
                     />
@@ -109,6 +125,7 @@ export function AppRoot() {
             <TitleControl />
             <InfoControl />
             <SearchControl />
+            <EditButtonControl />
         </MapProvider>
     );
 }

@@ -346,6 +346,335 @@ body {
 }
 
 /* ============================
+   Edit button (map control)
+   ============================ */
+.edit-button-control {
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.edit-map-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    color: #2c3e50;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s;
+}
+
+.edit-map-btn:hover {
+    background: #2c3e50;
+    color: #fff;
+}
+
+.edit-badge {
+    background: #e74c3c;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+}
+
+/* ============================
+   Editor page
+   ============================ */
+.editor-page {
+    font-family: 'Inter', sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.editor-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.editor-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.editor-back-link {
+    font-size: 14px;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #f0f2f5;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+
+.editor-back-link:hover {
+    background: #dde1e6;
+}
+
+.editor-header h1 {
+    margin: 0;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+.editor-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: #fff3cd;
+    color: #856404;
+    white-space: nowrap;
+}
+
+.editor-clear-btn {
+    padding: 6px 12px;
+    border: 1px solid #e74c3c;
+    border-radius: 6px;
+    background: white;
+    color: #e74c3c;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.editor-clear-btn:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.editor-select-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.editor-select-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+}
+
+.editor-select-group select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.editor-feature-count {
+    font-size: 13px;
+    color: #888;
+    margin-left: auto;
+}
+
+.editor-loading {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 15px;
+}
+
+/* Feature list */
+.editor-feature-list {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.editor-feature-row {
+    border-bottom: 1px solid #eee;
+}
+
+.editor-feature-row:last-child {
+    border-bottom: none;
+}
+
+.editor-feature-row.has-override {
+    background: #fffbeb;
+}
+
+.editor-feature-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    text-align: left;
+    transition: background 0.1s;
+}
+
+.editor-feature-header:hover {
+    background: #f0f2f5;
+}
+
+.editor-feature-index {
+    font-size: 12px;
+    color: #999;
+    min-width: 32px;
+    font-variant-numeric: tabular-nums;
+}
+
+.editor-feature-name {
+    flex: 1;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.editor-modified-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f0ad4e;
+    flex-shrink: 0;
+}
+
+.editor-chevron {
+    font-size: 10px;
+    color: #999;
+    transition: transform 0.15s;
+    flex-shrink: 0;
+}
+
+.editor-chevron.expanded {
+    transform: rotate(90deg);
+}
+
+/* Property form */
+.editor-property-form {
+    padding: 8px 14px 14px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid #eee;
+    background: #fafbfc;
+}
+
+.editor-property-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.editor-property-row.modified .editor-property-label {
+    color: #c07600;
+    font-weight: 600;
+}
+
+.editor-property-row.modified .editor-property-input {
+    border-color: #f0ad4e;
+    background: #fffdf5;
+}
+
+.editor-property-label {
+    font-size: 12px;
+    color: #555;
+    min-width: 120px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.editor-property-input {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.15s;
+}
+
+.editor-property-input:focus {
+    outline: none;
+    border-color: #2c3e50;
+}
+
+.editor-revert-btn {
+    padding: 2px 6px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #999;
+    line-height: 1;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.editor-revert-btn:hover {
+    background: #fee;
+    color: #e74c3c;
+}
+
+.editor-property-actions {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed #ddd;
+}
+
+.editor-revert-all-btn {
+    padding: 5px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    font-family: inherit;
+    font-size: 12px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.editor-revert-all-btn:hover {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+/* ============================
    Mobile responsive styles
    ============================ */
 @media (max-width: 768px) {

@@ -85,7 +85,7 @@ export const KINGDOM_NAME_MAP: Record<string, string> = {
     Moldavia: "Молдавське князівство",
     Hungary: "Угорське королівство (Габсбурзька монархія)",
     Transylvania: "Трансильванське князівство",
-    Russia: "Російська імперія",
+    Russia: "московська імперія",
     Turkey: "Османська імперія"
 };
 
