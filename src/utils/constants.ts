@@ -76,7 +76,11 @@ export const SOURCES: Source[] = [
     {
         title: "Територія та кордони Запорозьких земель / Т. А. Балабушевич, 1994",
         link: "https://shron1.chtyvo.org.ua/Balabushevych_Tetiana/Terytoriia_ta_kordony_zaporozkykh_zemel_16671775_pp.pdf"
-    }
+    },
+    {
+        title: "Люстрації королівщин українських земель XVI-XVIII ст. / Р. Майборода, 1999",
+        link: "https://shron1.chtyvo.org.ua/Maiboroda_Raisa/Liustratsii_korolivschyn_ukrainskykh_zemel_XVI-XVIII_st_materialy_do_reiestru_rukopysnykh_ta_drukova.pdf"
+    },
 ];
 
 /** Ukrainian translations of kingdom/empire names. */

@@ -25,7 +25,7 @@ function DefaultHint() {
     const isTouchDevice = 'ontouchstart' in window;
     const hint = isTouchDevice
         ? 'Натисніть на область на карті, щоб переглянути детальну інформацію'
-        : 'Наведіть курсор на карту, щоб переглянути детальну інформацію';
+        : 'Наведіть курсор на область на карті, щоб переглянути детальну інформацію';
 
     return <div className="p-3 sm:p-4 text-slate-500 dark:text-slate-600 text-xs sm:text-base">{hint}</div>;
 }

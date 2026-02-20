@@ -39,7 +39,7 @@ export function TitleControl() {
                 <div className="text-slate-700 dark:text-slate-400 mt-2">
                     <p className="mt-1 mb-2 break-words text-xs sm:text-sm">
                         Дана карта є лише гіпотетичною реконструкцією на основі аналізу доступних архівних джерел.
-                        Якщо помітили помилку або маєте що додати, повідомте про це автора.
+                        Якщо помітили помилку або маєте що додати, <a href="mailto:roman.k@inventarium.org.ua" className="hover:underline hover:decoration-2 hover:decoration-blue-400">повідомте про це автора.</a>
                     </p>
                     <h2 className="flex flex-row items-center gap-1.5 text-sm sm:text-base text-slate-900 dark:text-slate-200 font-bold mt-2 mb-2">
                         <MapPinned size={16}/>
@@ -74,10 +74,10 @@ export function TitleControl() {
                         :
                         <><span>приховати</span> <ChevronsUp size={14}/></>}
                     </a>
-                    <ol className={`mt-3 list-decimal text-xs break-words ${sourcesHidden ? 'hidden' : ''}`} id="sources">
+                    <ol className={`mt-3 list-decimal text-xs ${sourcesHidden ? 'hidden' : ''}`} id="sources">
                         {SOURCES.map((source, i) => (
-                            <li key={i} className="ml-4 my-1">
-                                <a target="_blank" rel="noopener noreferrer" href={source.link} className="!text-slate-700 dark:!text-slate-400 no-underline hover:underline hover:underline-offset-1 hover:decoration-2 hover:decoration-blue-400">
+                            <li key={i} className="ml-4 my-1 min-w-0">
+                                <a target="_blank" rel="noopener noreferrer" href={source.link} className="!text-slate-700 dark:!text-slate-400 no-underline hover:underline hover:decoration-2 hover:decoration-blue-400">
                                     {source.title}
                                 </a>
                             </li>
