@@ -11,7 +11,7 @@ import {
     type LayerType,
 } from '@/store/overrides.ts';
 import type { PeriodData } from '@/types/index.ts';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, TriangleAlert } from 'lucide-react';
 
 type FeatureEntry = {
     index: number;
@@ -135,6 +135,11 @@ export function EditorPage() {
                     )}
                 </div>
             </header>
+
+            <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 my-2">
+                <TriangleAlert size={14}/> Працює в тестовому режимі: зміни збережуться лише в цьому браузері і не будуть видимі іншим користувачам
+            </div>
+
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 px-3 sm:px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg mb-4">
                 <div className="flex items-center gap-2">
