@@ -1,4 +1,6 @@
 import type { TimePeriodConfig, Source, FlagIcon } from '@/types/index.ts';
+import L from 'leaflet';
+import 'leaflet.pattern';
 
 /**
  * Configuration for available historical time periods.
@@ -104,6 +106,7 @@ export const COUNTIES_NAME_MAP: Record<string, string> = {
     Kyiv: "Київське воєводство",
     Chernihiv: "Чернігівське воєводство",
     Hetmanate: "Гетьманщина",
+    Zvenyhorodka: "Київське/Брацлавське воєводство",
     Slobozhanshchyna: "Слобідські козацькі полки",
     Zaporizhzhia: "Військо Запорозьке Низове"
 };
@@ -218,9 +221,20 @@ export const STYLES = {
     }
 } as const;
 
+export const stripePattern = new L.StripePattern({
+    color: STYLES.FeatureFillColors.Cyan,
+    spaceColor: STYLES.FeatureFillColors.Pink,
+    opacity: 1.0,
+    spaceOpacity: 1.0,
+    weight: 4,
+    spaceWeight: 4,
+    angle: 315
+});
+
 /** Division-to-color mapping for region polygons. */
-export const DIVISION_COLOR_MAP: Record<string, string> = {
+export const DIVISION_COLOR_MAP: Record<string, string | any> = {
     [COUNTIES_NAME_MAP.Kyiv]: STYLES.FeatureFillColors.Cyan,
+    [COUNTIES_NAME_MAP.Zvenyhorodka]: stripePattern,
     [COUNTIES_NAME_MAP.Rus]: STYLES.FeatureFillColors.Blue,
     [COUNTIES_NAME_MAP.Volyn]: STYLES.FeatureFillColors.Purple,
     [COUNTIES_NAME_MAP.Chernihiv]: STYLES.FeatureFillColors.DarkPurple,

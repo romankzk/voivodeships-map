@@ -28,10 +28,14 @@ export function RegionsLayer({ map, data, layerGroup, onHover, onHoverEnd }: Reg
 
         const geoJsonLayer = L.geoJson(data, {
             pane: 'regionsPane',
-            style: (feature) => ({
-                ...(isDarkRef.current ? STYLES.DarkFeatureStyle : STYLES.BaseFeatureStyle),
-                fillColor: DIVISION_COLOR_MAP[feature?.properties?.higherDivision] ?? STYLES.FeatureFillColors.Default,
-            }),
+            style: (feature) => {
+                const base = (isDarkRef.current ? STYLES.DarkFeatureStyle : STYLES.BaseFeatureStyle);
+                const fill = DIVISION_COLOR_MAP[feature?.properties?.higherDivision];
+                return {
+                    ...base,
+                    ...(typeof fill === 'string' ? { fillColor: fill } : { fillPattern: fill }),
+                } as any;
+            },
             onEachFeature: (feature, layer) => {
                 layer.on({
                     mouseover: (e) => {
@@ -73,10 +77,14 @@ export function RegionsLayer({ map, data, layerGroup, onHover, onHoverEnd }: Reg
     // Restyle when theme changes (without recreating the layer)
     useEffect(() => {
         if (!layerRef.current) return;
-        layerRef.current.setStyle((feature) => ({
-            ...(isDark ? STYLES.DarkFeatureStyle : STYLES.BaseFeatureStyle),
-            fillColor: DIVISION_COLOR_MAP[feature?.properties?.higherDivision] ?? STYLES.FeatureFillColors.Default,
-        }));
+        layerRef.current.setStyle((feature) => {
+            const base = (isDark ? STYLES.DarkFeatureStyle : STYLES.BaseFeatureStyle);
+            const fill = DIVISION_COLOR_MAP[feature?.properties?.higherDivision];
+            return {
+                ...base,
+                ...(typeof fill === 'string' ? { fillColor: fill } : { fillPattern: fill }),
+            } as any;
+        });
     }, [isDark]);
 
     return null;

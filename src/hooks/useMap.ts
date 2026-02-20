@@ -1,5 +1,7 @@
 import { useEffect, useRef, type RefObject } from 'react';
 import L from 'leaflet';
+import 'leaflet.pattern';
+import { stripePattern } from '@/utils/constants';
 import { useDarkMode } from '@/hooks/useDarkMode.ts';
 
 const LEVEL2_ZOOM = 7;
@@ -60,7 +62,8 @@ export function useMap(containerRef: RefObject<HTMLDivElement | null>): L.Map | 
             });
         });
 
-        L.control.zoom({ position: 'bottomright' }).addTo(map);
+        L.control.zoom({ position: 'bottomright' }).addTo(map);      
+        stripePattern.addTo(map); // Add stripePattern to be used in the fillPattern
 
         mapRef.current = map;
 
