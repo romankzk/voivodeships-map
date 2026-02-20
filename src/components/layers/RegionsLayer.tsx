@@ -24,6 +24,8 @@ export function RegionsLayer({ map, data, layerGroup, onHover, onHoverEnd }: Reg
     isDarkRef.current = isDark;
 
     useEffect(() => {
+        let highlightedLayer: L.Path | null = null;
+
         const geoJsonLayer = L.geoJson(data, {
             pane: 'regionsPane',
             style: (feature) => ({
@@ -34,12 +36,21 @@ export function RegionsLayer({ map, data, layerGroup, onHover, onHoverEnd }: Reg
                 layer.on({
                     mouseover: (e) => {
                         const target = e.target as L.Path;
+                        // Reset the previously highlighted layer first
+                        if (highlightedLayer && highlightedLayer !== target) {
+                            geoJsonLayer.resetStyle(highlightedLayer);
+                        }
+                        highlightedLayer = target;
                         target.setStyle(isDarkRef.current ? STYLES.DarkHoverFeatureStyle : STYLES.HoverFeatureStyle);
                         target.bringToFront();
                         onHover(feature.properties as AreaFeatureProperties);
                     },
                     mouseout: (e) => {
-                        geoJsonLayer.resetStyle(e.target as L.Path);
+                        const target = e.target as L.Path;
+                        geoJsonLayer.resetStyle(target);
+                        if (highlightedLayer === target) {
+                            highlightedLayer = null;
+                        }
                         onHoverEnd();
                     },
                     click: (e) => {
