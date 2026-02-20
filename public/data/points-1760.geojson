@@ -69,7 +69,7 @@
 { "type": "Feature", "properties": { "name": "Дроговиж", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.940718091211387, 49.52891547711986 ] } },
 { "type": "Feature", "properties": { "name": "Вишня", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.374509244000926, 49.788176567000065 ] } },
 { "type": "Feature", "properties": { "name": "Щуровичі", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 25.025481480006007, 50.271914058686022 ] } },
-{ "type": "Feature", "properties": { "name": "Потужин", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.937449384327266, 50.56210231204377 ] } },
+{ "type": "Feature", "properties": { "name": "Потуржин", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.937449384327266, 50.56210231204377 ] } },
 { "type": "Feature", "properties": { "name": "Річиця", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 23.753335168149398, 50.443006184863592 ] } },
 { "type": "Feature", "properties": { "name": "Тарнаватка", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.395566597822796, 50.530923873969911 ] } },
 { "type": "Feature", "properties": { "name": "Тарногора", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.13682264236445, 50.89476509467773 ] } },
