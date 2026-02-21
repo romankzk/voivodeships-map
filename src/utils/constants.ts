@@ -44,8 +44,8 @@ export const SOURCES: Source[] = [
         link: "http://history.org.ua/LiberUA/978-966-8197-52-9/978-966-8197-52-9.pdf"
     },
     {
-        title: "Повітовий поділ Подільського воєводства в останній чверті XVI-XVIII ст. / М. Крикун, 1997",
-        link: "https://chtyvo.org.ua/authors/Krykun_Mykola/Povitovyi_podil_Podilskoho_voievodstva_v_ostannii_chverti_XVI-XVIII_st/"
+        title: "Подільське воєводство у XV-XVIII століттях: Статті і матеріали / М. Крикун, 2011",
+        link: "https://shron3.chtyvo.org.ua/Krykun_Mykola/Podilske_voievodstvo_u_XV-XVIII_stolittiakh_Statti_i_materialy.pdf"
     },
     {
         title: "Міста Руського та Белзького воєводств (15-18 ст.) / Б. Смерека",
@@ -107,8 +107,10 @@ export const COUNTIES_NAME_MAP: Record<string, string> = {
     Chernihiv: "Чернігівське воєводство",
     Hetmanate: "Гетьманщина",
     Zvenyhorodka: "Київське/Брацлавське воєводство",
+    Lubech: "Київське/Смоленське воєводство",
     Slobozhanshchyna: "Слобідські козацькі полки",
-    Zaporizhzhia: "Військо Запорозьке Низове"
+    Zaporizhzhia: "Військо Запорозьке Низове",
+    Spis: "Краківське воєводство"
 };
 
 /** Country flag/coat-of-arms icons with associated language labels. */
@@ -235,6 +237,7 @@ export const stripePattern = new L.StripePattern({
 export const DIVISION_COLOR_MAP: Record<string, string | any> = {
     [COUNTIES_NAME_MAP.Kyiv]: STYLES.FeatureFillColors.Cyan,
     [COUNTIES_NAME_MAP.Zvenyhorodka]: stripePattern,
+    [COUNTIES_NAME_MAP.Lubech]: stripePattern,
     [COUNTIES_NAME_MAP.Rus]: STYLES.FeatureFillColors.Blue,
     [COUNTIES_NAME_MAP.Volyn]: STYLES.FeatureFillColors.Purple,
     [COUNTIES_NAME_MAP.Chernihiv]: STYLES.FeatureFillColors.DarkPurple,
@@ -249,4 +252,5 @@ export const DIVISION_COLOR_MAP: Record<string, string | any> = {
     [COUNTIES_NAME_MAP.Hetmanate]: STYLES.FeatureFillColors.DarkPurple,
     [COUNTIES_NAME_MAP.Zaporizhzhia]: STYLES.FeatureFillColors.Gold,
     [COUNTIES_NAME_MAP.Slobozhanshchyna]: STYLES.FeatureFillColors.Blue,
+    [COUNTIES_NAME_MAP.Spis]: stripePattern,
 };

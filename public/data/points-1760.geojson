@@ -70,7 +70,7 @@
 { "type": "Feature", "properties": { "name": "Вишня", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.374509244000926, 49.788176567000065 ] } },
 { "type": "Feature", "properties": { "name": "Щуровичі", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 25.025481480006007, 50.271914058686022 ] } },
 { "type": "Feature", "properties": { "name": "Потуржин", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.937449384327266, 50.56210231204377 ] } },
-{ "type": "Feature", "properties": { "name": "Річиця", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 23.753335168149398, 50.443006184863592 ] } },
+{ "type": "Feature", "properties": { "name": "Річиця", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.753335168149398, 50.443006184863592 ] } },
 { "type": "Feature", "properties": { "name": "Тарнаватка", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.395566597822796, 50.530923873969911 ] } },
 { "type": "Feature", "properties": { "name": "Тарногора", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.13682264236445, 50.89476509467773 ] } },
 { "type": "Feature", "properties": { "name": "Любомль", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 24.032517143493692, 51.223129149235263 ] } },
@@ -97,7 +97,6 @@
 { "type": "Feature", "properties": { "name": "Дубенка", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 23.892203599563008, 51.048770228494291 ] } },
 { "type": "Feature", "properties": { "name": "Кагарлик", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 30.823789010576085, 49.864443640711585 ] } },
 { "type": "Feature", "properties": { "name": "Лежайськ", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 22.419289870139977, 50.261489022425813 ] } },
-{ "type": "Feature", "properties": { "name": "Нехворощ", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 31.087212377994884, 49.488163771675744 ] } },
 { "type": "Feature", "properties": { "name": "Рожів", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 29.651321054964551, 50.38757966376123 ] } },
 { "type": "Feature", "properties": { "name": "Ставище", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 30.193857582845858, 49.388823618731109 ] } },
 { "type": "Feature", "properties": { "name": "Таборів", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 29.711190002105205, 49.812783392683578 ] } },
@@ -118,6 +117,15 @@
 { "type": "Feature", "properties": { "name": "Острогозьк", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 39.076362095783161, 50.864160114012812 ] } },
 { "type": "Feature", "properties": { "name": "Охтирка", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 34.887737872155739, 50.311575403818829 ] } },
 { "type": "Feature", "properties": { "name": "Суми", "description": null, "adminLevel": 2 }, "geometry": { "type": "Point", "coordinates": [ 34.802407418759884, 50.91035022065622 ] } },
-{ "type": "Feature", "properties": { "name": "Нова Січ", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 34.148941301464014, 47.539673693145339 ] } }
+{ "type": "Feature", "properties": { "name": "Нова Січ", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 34.148941301464014, 47.539673693145339 ] } },
+{ "type": "Feature", "properties": { "name": "Пряшів", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 21.240387723083494, 48.997079959040043 ] } },
+{ "type": "Feature", "properties": { "name": "Левоча", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 20.5893989415314, 49.024568276758806 ] } },
+{ "type": "Feature", "properties": { "name": "Любовня", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 20.689249334980893, 49.300098002618903 ] } },
+{ "type": "Feature", "properties": { "name": "Синиця", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 30.716541017336951, 49.573694224212467 ] } },
+{ "type": "Feature", "properties": { "name": "Нехворощ", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 28.971739690037321, 49.968705162936196 ] } },
+{ "type": "Feature", "properties": { "name": "Романів", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 27.931946826479955, 50.147368535560119 ] } },
+{ "type": "Feature", "properties": { "name": "Мукарів", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 26.907774941084568, 48.959863065661239 ] } },
+{ "type": "Feature", "properties": { "name": "Ланівці", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 26.00189583745324, 48.845826644372679 ] } },
+{ "type": "Feature", "properties": { "name": "Тирява Волоська", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 22.363515408465439, 49.575791523602092 ] } }
 ]
 }

@@ -71,6 +71,9 @@
 { "type": "Feature", "properties": { "name": "Берегсас", "description": "сучасне Берегове", "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.645828460929796, 48.204500400442875 ] } },
 { "type": "Feature", "properties": { "name": "Унгвар", "description": "сучасний Ужгород", "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 22.300102494913109, 48.619247428233187 ] } },
 { "type": "Feature", "properties": { "name": "Земплін", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 21.811688871544565, 48.439490135160348 ] } },
-{ "type": "Feature", "properties": { "name": "Микитинська Січ", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 34.398601692528622, 47.538930399590129 ] } }
+{ "type": "Feature", "properties": { "name": "Микитинська Січ", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 34.398601692528622, 47.538930399590129 ] } },
+{ "type": "Feature", "properties": { "name": "Шаришський Град", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 21.176011401186887, 49.052492411129144 ] } },
+{ "type": "Feature", "properties": { "name": "Левоча", "description": null, "adminLevel": 1 }, "geometry": { "type": "Point", "coordinates": [ 20.5893989415314, 49.024568276758806 ] } },
+{ "type": "Feature", "properties": { "name": "Любовня", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 20.689249334980893, 49.300098002618903 ] } }
 ]
 }
