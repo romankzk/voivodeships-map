@@ -126,6 +126,7 @@
 { "type": "Feature", "properties": { "name": "Романів", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 27.931946826479955, 50.147368535560119 ] } },
 { "type": "Feature", "properties": { "name": "Мукарів", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 26.907774941084568, 48.959863065661239 ] } },
 { "type": "Feature", "properties": { "name": "Ланівці", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 26.00189583745324, 48.845826644372679 ] } },
-{ "type": "Feature", "properties": { "name": "Тирява Волоська", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 22.363515408465439, 49.575791523602092 ] } }
+{ "type": "Feature", "properties": { "name": "Тирява Волоська", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 22.363515408465439, 49.575791523602092 ] } },
+{ "type": "Feature", "properties": { "name": "Кобринь", "description": null, "adminLevel": 3 }, "geometry": { "type": "Point", "coordinates": [ 24.354674012504731, 52.213289279198712 ] } }
 ]
 }

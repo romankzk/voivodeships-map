@@ -72,6 +72,10 @@ export const SOURCES: Source[] = [
         link: "https://maps.arcanum.com/en/"
     },
     {
+        title: "Генеральная карта Малой России, разделенной на десять полков / 1829",
+        link: "https://upload.wikimedia.org/wikipedia/commons/9/90/%D0%9F%D0%BE%D0%BB%D0%BA%D0%B8_%D0%9C%D0%B0%D0%BB%D0%BE%D0%B9_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8.jpg"
+    },
+    {
         title: "Конфігурація та устрій Вольностей Війська Запорозького Низового за часів Нової Січі / В. І. Мільчев",
         link: "https://old.istznu.org/dc/file.php?host_id=1&path=/page/issues/20/20/milchev.pdf"
     },
