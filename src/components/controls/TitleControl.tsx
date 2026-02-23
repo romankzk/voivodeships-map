@@ -38,8 +38,8 @@ export function TitleControl() {
             {bodyExpanded && (
                 <div className="text-slate-700 dark:text-slate-400 mt-2">
                     <p className="mt-1 mb-2 break-words text-xs sm:text-sm">
-                        Дана карта є лише гіпотетичною реконструкцією на основі аналізу доступних архівних джерел.
-                        Якщо помітили помилку або маєте що додати, <a href="mailto:roman.k@inventarium.org.ua" className="hover:underline hover:decoration-2 hover:decoration-blue-400">повідомте про це автора.</a>
+                        Дана карта є лише гіпотетичною реконструкцією на основі аналізу доступних джерел.
+                        Якщо помітили помилку або маєте що додати, <a href="mailto:roman.k@inventarium.org.ua" className="!text-blue-600 hover:!text-blue-400 transition-colors">повідомте про це автора.</a>
                     </p>
                     <h2 className="flex flex-row items-center gap-1.5 text-sm sm:text-base text-slate-900 dark:text-slate-200 font-bold mt-2 mb-2">
                         <MapPinned size={16}/>
@@ -77,7 +77,7 @@ export function TitleControl() {
                     <ol className={`mt-3 list-decimal text-xs ${sourcesHidden ? 'hidden' : ''}`} id="sources">
                         {SOURCES.map((source, i) => (
                             <li key={i} className="ml-4 my-1 min-w-0">
-                                <a target="_blank" rel="noopener noreferrer" href={source.link} className="!text-slate-700 dark:!text-slate-400 no-underline hover:underline hover:decoration-2 hover:decoration-blue-400">
+                                <a target="_blank" rel="noopener noreferrer" href={source.link} className="!text-slate-700 dark:!text-slate-400 hover:!text-blue-600 transition-colors">
                                     {source.title}
                                 </a>
                             </li>
