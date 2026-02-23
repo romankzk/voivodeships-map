@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { useMap } from '@/hooks/useMap.ts';
+import { applyLabelOpacity, useMap } from '@/hooks/useMap.ts';
 import { usePeriodData } from '@/hooks/usePeriodData.ts';
 import { useApplyOverrides } from '@/hooks/useOverrides.ts';
 import { MapProvider } from '@/context/MapContext.tsx';
@@ -65,6 +65,18 @@ export function AppRoot() {
         };
     }, [map, dataGroup, searchLayer]);
 
+    // Apply zoom-based opacity when data changes (e.g., period switch)
+    useEffect(() => {
+        if (!map || !effectiveData) return;
+
+        // Small delay to ensure labels are rendered before applying opacity
+        const timer = setTimeout(() => {
+            applyLabelOpacity(map.getZoom());
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, [map, effectiveData]);
+
     const handleHover = useCallback((props: AreaFeatureProperties) => {
         setHoveredRegion(props);
     }, []);
@@ -120,10 +132,10 @@ export function AppRoot() {
             
             <TitleControl />
             <InfoControl />
-
+            
+            <TimelineControl />
+            <ThemeToggleControl /> 
             <SearchControl />
-            <TimelineControl /> 
-            <ThemeToggleControl />
             <EditButtonControl />
         </MapProvider>
     );

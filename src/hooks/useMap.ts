@@ -10,6 +10,19 @@ const LEVEL3_ZOOM = 8;
 const DARK_TILE_URL = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}.png';
 const LIGHT_TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
+/**
+ * Apply zoom-based opacity to city labels
+ */
+export function applyLabelOpacity(zoom: number) {
+    document.querySelectorAll<HTMLElement>('.level2-city-label').forEach(el => {
+        el.style.opacity = zoom < LEVEL2_ZOOM ? '0' : '1';
+    });
+
+    document.querySelectorAll<HTMLElement>('.level3-city-label').forEach(el => {
+        el.style.opacity = zoom < LEVEL3_ZOOM ? '0' : '1';
+    });
+};
+
 const TILE_OPTIONS: L.TileLayerOptions = {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
